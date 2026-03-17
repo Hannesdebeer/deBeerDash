@@ -1,0 +1,860 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>deBeerDash</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --glass-bg: rgba(255,255,255,0.55);
+    --glass-border: rgba(255,255,255,0.3);
+    --glass-shadow: 0 8px 32px rgba(0,0,0,0.08);
+    --glass-blur: blur(20px);
+    --accent: #0071e3;
+    --accent-light: rgba(0,113,227,0.08);
+    --text: #1d1d1f;
+    --text-secondary: #6e6e73;
+    --text-tertiary: #86868b;
+    --bg: #f5f5f7;
+    --card-radius: 20px;
+    --green: #34c759;
+    --orange: #ff9f0a;
+    --purple: #af52de;
+    --pink: #ff2d55;
+    --teal: #5ac8fa;
+    --red: #ff3b30;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    min-height: 100vh;
+    background-image:
+      radial-gradient(ellipse at 20% 0%, rgba(0,113,227,0.08) 0%, transparent 50%),
+      radial-gradient(ellipse at 80% 100%, rgba(175,82,222,0.06) 0%, transparent 50%),
+      radial-gradient(ellipse at 50% 50%, rgba(52,199,89,0.04) 0%, transparent 60%);
+    background-attachment: fixed;
+  }
+  .container { max-width: 960px; margin: 0 auto; padding: 24px 20px; }
+
+  /* Hero */
+  .hero { text-align: center; padding: 60px 24px 48px; margin-bottom: 32px; }
+  .hero-flag { font-size: 2em; margin-bottom: 8px; }
+  .hero-label {
+    display: inline-block; font-size: 0.75em; font-weight: 600; letter-spacing: 0.08em;
+    text-transform: uppercase; color: var(--accent); background: var(--accent-light);
+    padding: 6px 16px; border-radius: 100px; margin-bottom: 16px;
+  }
+  .hero h1 {
+    font-size: 2.8em; font-weight: 800; letter-spacing: -0.03em;
+    background: linear-gradient(135deg, var(--text) 0%, #444 100%);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 8px;
+  }
+  .hero p { font-size: 1.1em; color: var(--text-secondary); font-weight: 400; max-width: 600px; margin: 0 auto; }
+
+  /* Tabs */
+  .tabs {
+    display: flex; gap: 4px; padding: 4px;
+    background: var(--glass-bg); backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
+    border: 1px solid var(--glass-border); border-radius: 14px;
+    margin-bottom: 24px; box-shadow: var(--glass-shadow);
+    overflow-x: auto;
+  }
+  .tab {
+    flex: 1; min-width: 0; padding: 10px 6px; border: none; background: transparent;
+    color: var(--text-secondary); font-family: inherit; font-size: 0.82em; font-weight: 500;
+    border-radius: 10px; cursor: pointer; transition: all 0.25s ease; text-align: center;
+    white-space: nowrap;
+  }
+  .tab:hover { background: rgba(0,0,0,0.04); color: var(--text); }
+  .tab.active {
+    background: white; color: var(--text); font-weight: 600;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06), 0 0 1px rgba(0,0,0,0.1);
+  }
+  .tab-content { display: none; animation: fadeIn 0.3s ease; }
+  .tab-content.active { display: block; }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+
+  /* Section titles */
+  .section-title { font-size: 1.5em; font-weight: 700; letter-spacing: -0.02em; margin-bottom: 6px; }
+  .section-sub { font-size: 0.9em; color: var(--text-tertiary); margin-bottom: 20px; }
+  .section-label {
+    font-size: 0.8em; font-weight: 600; text-transform: uppercase;
+    letter-spacing: 0.06em; color: var(--text-tertiary); margin: 28px 0 12px;
+  }
+
+  /* Glass card */
+  .glass-card {
+    background: var(--glass-bg); backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
+    border: 1px solid var(--glass-border); border-radius: var(--card-radius);
+    padding: 20px; margin-bottom: 14px; box-shadow: var(--glass-shadow);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  .glass-card:hover { transform: translateY(-2px); box-shadow: 0 12px 40px rgba(0,0,0,0.1); }
+
+  .card-header { display: flex; justify-content: space-between; align-items: flex-start; gap: 10px; margin-bottom: 8px; flex-wrap: wrap; }
+  .card-name { font-size: 1.15em; font-weight: 650; letter-spacing: -0.01em; }
+
+  .badge {
+    display: inline-flex; align-items: center; gap: 4px; padding: 3px 10px;
+    border-radius: 100px; font-size: 0.72em; font-weight: 600; letter-spacing: 0.02em;
+  }
+  .badge-blue { background: rgba(0,113,227,0.1); color: var(--accent); }
+  .badge-green { background: rgba(52,199,89,0.1); color: var(--green); }
+  .badge-orange { background: rgba(255,159,10,0.1); color: #cc7f08; }
+  .badge-purple { background: rgba(175,82,222,0.1); color: var(--purple); }
+  .badge-pink { background: rgba(255,45,85,0.1); color: var(--pink); }
+  .badge-teal { background: rgba(90,200,250,0.1); color: #0a84ff; }
+  .badge-red { background: rgba(255,59,48,0.1); color: var(--red); }
+
+  .card-meta { display: flex; gap: 16px; flex-wrap: wrap; font-size: 0.82em; color: var(--text-tertiary); margin-bottom: 8px; }
+  .card-meta span { display: flex; align-items: center; gap: 4px; }
+  .card-desc { font-size: 0.9em; color: var(--text-secondary); line-height: 1.6; }
+
+  .price { font-size: 1.35em; font-weight: 700; letter-spacing: -0.02em; margin: 4px 0; }
+  .price small { font-size: 0.45em; font-weight: 400; color: var(--text-tertiary); }
+
+  .tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
+  .tag { padding: 4px 10px; background: rgba(0,0,0,0.04); border-radius: 8px; font-size: 0.78em; font-weight: 500; color: var(--text-secondary); }
+
+  .map-link {
+    display: inline-flex; align-items: center; gap: 5px; margin-top: 8px;
+    padding: 5px 12px; background: rgba(0,113,227,0.08); border: 1px solid rgba(0,113,227,0.15);
+    border-radius: 8px; font-size: 0.78em; font-weight: 500; color: var(--accent);
+    text-decoration: none; transition: all 0.2s;
+  }
+  .map-link:hover { background: rgba(0,113,227,0.14); transform: translateY(-1px); }
+  .map-link svg { width: 14px; height: 14px; }
+
+  /* Tip / Warning / Info cards */
+  .tip-card {
+    background: linear-gradient(135deg, rgba(52,199,89,0.08) 0%, rgba(0,113,227,0.06) 100%);
+    backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur);
+    border: 1px solid rgba(52,199,89,0.15); border-radius: var(--card-radius);
+    padding: 20px; margin: 20px 0 14px;
+  }
+  .tip-card strong { color: var(--text); }
+  .tip-card p { font-size: 0.88em; color: var(--text-secondary); line-height: 1.7; }
+
+  .warning-card {
+    background: linear-gradient(135deg, rgba(255,59,48,0.06) 0%, rgba(255,159,10,0.08) 100%);
+    backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur);
+    border: 1px solid rgba(255,59,48,0.15); border-radius: var(--card-radius);
+    padding: 20px; margin: 20px 0 14px;
+  }
+  .warning-card strong { color: var(--red); }
+  .warning-card p { font-size: 0.88em; color: var(--text-secondary); line-height: 1.7; }
+
+  .info-card {
+    background: linear-gradient(135deg, rgba(0,113,227,0.06) 0%, rgba(175,82,222,0.05) 100%);
+    backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur);
+    border: 1px solid rgba(0,113,227,0.15); border-radius: var(--card-radius);
+    padding: 20px; margin: 20px 0 14px;
+  }
+  .info-card strong { color: var(--accent); }
+  .info-card p { font-size: 0.88em; color: var(--text-secondary); line-height: 1.7; }
+
+  /* Property listing card */
+  .prop-card {
+    background: var(--glass-bg); backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
+    border: 1px solid var(--glass-border); border-radius: var(--card-radius);
+    overflow: hidden; margin-bottom: 18px; box-shadow: var(--glass-shadow);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  .prop-card:hover { transform: translateY(-2px); box-shadow: 0 12px 40px rgba(0,0,0,0.12); }
+  .prop-img {
+    width: 100%; height: 220px; object-fit: cover; display: block;
+    background: #e0e0e0;
+  }
+  .prop-body { padding: 20px; }
+  .prop-body .card-header { margin-bottom: 6px; }
+  .prop-price { font-size: 1.5em; font-weight: 800; letter-spacing: -0.02em; color: var(--text); margin: 6px 0; }
+  .prop-price small { font-size: 0.4em; font-weight: 400; color: var(--text-tertiary); }
+  .prop-specs { display: flex; gap: 12px; flex-wrap: wrap; margin: 8px 0; }
+  .prop-spec {
+    display: flex; align-items: center; gap: 4px; font-size: 0.82em; color: var(--text-secondary);
+    padding: 4px 10px; background: rgba(0,0,0,0.04); border-radius: 8px;
+  }
+  .prop-link {
+    display: inline-flex; align-items: center; gap: 5px; margin-top: 10px;
+    padding: 8px 16px; background: var(--accent); color: white;
+    border-radius: 10px; font-size: 0.82em; font-weight: 600; text-decoration: none;
+    transition: all 0.2s;
+  }
+  .prop-link:hover { opacity: 0.9; transform: translateY(-1px); }
+
+  /* Table */
+  .data-table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 0.85em; }
+  .data-table th {
+    text-align: left; padding: 10px 12px; background: rgba(0,0,0,0.04);
+    font-weight: 600; color: var(--text); border-bottom: 2px solid rgba(0,0,0,0.08);
+  }
+  .data-table td { padding: 10px 12px; border-bottom: 1px solid rgba(0,0,0,0.05); color: var(--text-secondary); }
+  .data-table tr:hover td { background: rgba(0,113,227,0.03); }
+
+  /* Steps */
+  .step { display: flex; gap: 16px; margin: 14px 0; }
+  .step-num {
+    flex-shrink: 0; width: 32px; height: 32px; border-radius: 50%;
+    background: var(--accent); color: white; font-size: 0.82em; font-weight: 700;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .step-text { flex: 1; font-size: 0.9em; color: var(--text-secondary); line-height: 1.6; }
+  .step-text strong { color: var(--text); }
+
+  /* Footer */
+  .footer { text-align: center; padding: 32px 20px; font-size: 0.78em; color: var(--text-tertiary); }
+
+  /* Responsive */
+  @media (max-width: 640px) {
+    .hero h1 { font-size: 2em; }
+    .tabs { gap: 2px; }
+    .tab { font-size: 0.72em; padding: 8px 4px; }
+    .glass-card, .prop-body { padding: 16px; }
+    .prop-img { height: 180px; }
+    .data-table { font-size: 0.78em; }
+    .data-table th, .data-table td { padding: 8px 6px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <div class="hero">
+    <div class="hero-flag">🇿🇦 → 🇹🇭</div>
+    <div class="hero-label">South African Buyer's Guide</div>
+    <h1>Buying an Apartment<br>in Koh Samui</h1>
+    <p>Everything you need to know about buying freehold property in Thailand as a South African citizen</p>
+  </div>
+
+  <div class="tabs">
+    <button class="tab active" onclick="showTab('overview')">Overview</button>
+    <button class="tab" onclick="showTab('listings')">Listings</button>
+    <button class="tab" onclick="showTab('legal')">Legal Process</button>
+    <button class="tab" onclick="showTab('sa')">SA Finances</button>
+    <button class="tab" onclick="showTab('costs')">Costs &amp; Fees</button>
+    <button class="tab" onclick="showTab('market')">Market Data</button>
+    <button class="tab" onclick="showTab('visa')">Visas</button>
+    <button class="tab" onclick="showTab('practical')">Practical</button>
+  </div>
+
+  <!-- ===== OVERVIEW ===== -->
+  <div id="overview" class="tab-content active">
+    <div class="section-title">Can You Buy Property in Thailand?</div>
+    <div class="section-sub">Short answer: Yes &mdash; with important rules</div>
+
+    <div class="tip-card">
+      <strong>The Good News</strong>
+      <p>Foreigners can own a condominium unit <strong>100% freehold</strong> in their own name in Thailand. This is permanent, inheritable, and transferable ownership with a full title deed. No company needed, no nominee &mdash; it's yours outright.</p>
+    </div>
+
+    <div class="glass-card">
+      <div class="card-header">
+        <span class="card-name">The 49% Foreign Quota Rule</span>
+        <span class="badge badge-blue">Key Rule</span>
+      </div>
+      <p class="card-desc">Under the Thai Condominium Act, foreigners can collectively own up to <strong>49% of the total floor area</strong> in any registered condominium building. The other 51% must be Thai-owned. Always get <strong>written confirmation</strong> from the condo's Juristic Person that foreign quota is available before paying anything.</p>
+    </div>
+
+    <div class="glass-card">
+      <div class="card-header">
+        <span class="card-name">Freehold vs Leasehold</span>
+      </div>
+      <table class="data-table">
+        <tr><th>Type</th><th>Duration</th><th>Price</th><th>Notes</th></tr>
+        <tr><td><strong>Freehold</strong></td><td>Permanent</td><td>Full price</td><td>Full ownership in your name. Inheritable. This is what you want.</td></tr>
+        <tr><td><strong>Leasehold</strong></td><td>30 years max</td><td>20&ndash;30% cheaper</td><td>Renewal not guaranteed. Less secure. Use only if quota is full.</td></tr>
+      </table>
+    </div>
+
+    <div class="warning-card">
+      <strong>Never Use a Nominee Company</strong>
+      <p>Using a Thai company with fake Thai shareholders to buy land is <strong>illegal</strong>. Penalties: up to 3 years prison and THB 1,000,000 fines. Thai authorities have been actively investigating and prosecuting these in 2024&ndash;2025. The foreign "owner" has zero legal protection. <strong>Just buy a freehold condo.</strong></p>
+    </div>
+
+    <div class="glass-card">
+      <div class="card-header">
+        <span class="card-name">What You Can &amp; Can't Own</span>
+      </div>
+      <table class="data-table">
+        <tr><th>Property Type</th><th>Can Own?</th><th>Method</th></tr>
+        <tr><td>Condo / Apartment</td><td><strong style="color:var(--green)">Yes</strong></td><td>Freehold (within 49% quota)</td></tr>
+        <tr><td>Land</td><td><strong style="color:var(--red)">No</strong></td><td>Foreigners cannot own land</td></tr>
+        <tr><td>House / Villa</td><td>Structure only</td><td>Own building, lease the land (30 years)</td></tr>
+      </table>
+    </div>
+
+    <div class="section-label">Key Numbers at a Glance</div>
+    <div class="glass-card">
+      <table class="data-table">
+        <tr><td><strong>Entry price (studio)</strong></td><td>THB 2.15M &middot; ~R1.2M &middot; ~$60K</td></tr>
+        <tr><td><strong>Average price/sqm</strong></td><td>THB 60,000&ndash;100,000 &middot; R33K&ndash;55K</td></tr>
+        <tr><td><strong>Transfer fees &amp; taxes</strong></td><td>~3&ndash;6% of value</td></tr>
+        <tr><td><strong>Rental yield</strong></td><td>5&ndash;8% gross &middot; 4&ndash;6% net</td></tr>
+        <tr><td><strong>SA allowance (FIA + SDA)</strong></td><td>R11M per year without SARB approval</td></tr>
+        <tr><td><strong>Exchange rate</strong></td><td>~R0.55 per THB &middot; ~THB 1.82 per R1</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- ===== LISTINGS ===== -->
+  <div id="listings" class="tab-content">
+    <div class="section-title">Properties for Sale</div>
+    <div class="section-sub">Freehold condos in Koh Samui &middot; Foreigners can buy &middot; March 2026</div>
+
+    <div class="section-label">Budget &mdash; Under THB 5M (~R2.75M / $140K)</div>
+
+    <div class="prop-card">
+      <img class="prop-img" src="https://samui-island-realty.com/wp-content/uploads/2021/10/Replay-condominium-studio-apartment-for-sale-samui.jpg" alt="Replay Residence Studio" onerror="this.style.display='none'">
+      <div class="prop-body">
+        <div class="card-header">
+          <span class="card-name">Replay Residence &mdash; Studio</span>
+          <span class="badge badge-green">Cheapest Entry</span>
+        </div>
+        <div class="prop-price">THB 2,150,000 <small>~R1.18M &middot; ~$60,500</small></div>
+        <div class="prop-specs">
+          <span class="prop-spec">26 sqm</span>
+          <span class="prop-spec">Studio</span>
+          <span class="prop-spec">Bangrak</span>
+          <span class="prop-spec">Freehold</span>
+        </div>
+        <p class="card-desc">50m from Bangrak Beach, 800m to Fisherman's Village. Pool, gym, sauna, jacuzzi, steam room, tennis court, 24hr security, concierge. Great rental potential in tourist hotspot.</p>
+        <a class="map-link" href="https://maps.google.com/?q=Replay+Residence+Bangrak+Koh+Samui" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 010-5 2.5 2.5 0 010 5z"/></svg>Open in Maps</a>
+      </div>
+    </div>
+
+    <div class="prop-card">
+      <img class="prop-img" src="https://www.estate-samui-properties.com/wp-content/uploads/2023/02/vs5183-wing-samui-condominium-3.jpg" alt="Wing Samui Studio" onerror="this.style.display='none'">
+      <div class="prop-body">
+        <div class="card-header">
+          <span class="card-name">Wing Samui Condo &mdash; 1-Bed Studio (Type A)</span>
+          <span class="badge badge-blue">Most Popular</span>
+        </div>
+        <div class="prop-price">THB 3,850,000 <small>~R2.12M &middot; ~$108K</small></div>
+        <div class="prop-specs">
+          <span class="prop-spec">32 sqm</span>
+          <span class="prop-spec">1 Bedroom</span>
+          <span class="prop-spec">Bophut</span>
+          <span class="prop-spec">Freehold</span>
+        </div>
+        <p class="card-desc">Koh Samui's largest freehold condo complex. Fully furnished, smart TV, WiFi, A/C, balcony. 2 large pools, tennis court, fitness centre, kids' pool, 5,000 sqm garden, jogging track. Full property management &amp; rental program. <strong>5-year developer buyback guarantee.</strong></p>
+        <a class="map-link" href="https://maps.google.com/?q=Wing+Samui+Condominium+Bophut" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 010-5 2.5 2.5 0 010 5z"/></svg>Open in Maps</a>
+      </div>
+    </div>
+
+    <div class="prop-card">
+      <img class="prop-img" src="https://www.estate-samui-properties.com/wp-content/uploads/2024/10/ds5430-anava-condominium-584x438.jpg" alt="ANAVA Samui" onerror="this.style.display='none'">
+      <div class="prop-body">
+        <div class="card-header">
+          <span class="card-name">ANAVA Samui &mdash; Studio (Off-Plan)</span>
+          <span class="badge badge-purple">New Development</span>
+        </div>
+        <div class="prop-price">From THB 3,531,520 <small>~R1.94M &middot; ~$99K</small></div>
+        <div class="prop-specs">
+          <span class="prop-spec">28&ndash;35 sqm</span>
+          <span class="prop-spec">Studio</span>
+          <span class="prop-spec">Bangrak Beach</span>
+          <span class="prop-spec">Freehold</span>
+          <span class="prop-spec">Completion: Jan 2027</span>
+        </div>
+        <p class="card-desc">First freehold oceanview condo on Samui in 20+ years. 564 units. Massive 2,077 sqm wrap-around pool, gym, on-site dining, concierge. <strong>6% guaranteed rental return for 5 years.</strong> Beachfront location. 0% interest payment plans available.</p>
+        <a class="map-link" href="https://maps.google.com/?q=ANAVA+Samui+Bangrak+Beach" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 010-5 2.5 2.5 0 010 5z"/></svg>Open in Maps</a>
+      </div>
+    </div>
+
+    <div class="section-label">Mid-Range &mdash; THB 5&ndash;10M (~R2.75M&ndash;5.5M / $140&ndash;280K)</div>
+
+    <div class="prop-card">
+      <img class="prop-img" src="https://samuipropertylocator.com/wp-content/uploads/2020/05/Replay-Condo-for-Sale-washing-machine.jpeg" alt="Replay 1-Bed" onerror="this.style.display='none'">
+      <div class="prop-body">
+        <div class="card-header">
+          <span class="card-name">Replay Residence &mdash; 1-Bedroom Corner Unit</span>
+          <span class="badge badge-green">Sea View</span>
+        </div>
+        <div class="prop-price">THB 4,600,000 <small>~R2.53M &middot; ~$130K</small></div>
+        <div class="prop-specs">
+          <span class="prop-spec">52 sqm</span>
+          <span class="prop-spec">1 Bedroom</span>
+          <span class="prop-spec">Bangrak</span>
+          <span class="prop-spec">Freehold (Chanote)</span>
+          <span class="prop-spec">4th Floor</span>
+        </div>
+        <p class="card-desc">Corner unit in Building C with sea view towards Bophut. IKEA fitted kitchen, granite worktop, 4-burner hob, oven, rain shower, 42" LED TV with soundbar, fibre optic internet. All resort amenities included.</p>
+        <a class="map-link" href="https://maps.google.com/?q=Replay+Residence+Bangrak+Koh+Samui" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 010-5 2.5 2.5 0 010 5z"/></svg>Open in Maps</a>
+      </div>
+    </div>
+
+    <div class="prop-card">
+      <img class="prop-img" src="https://samui-island-realty.com/wp-content/uploads/2024/01/Wing-Samui-Condo-1.jpg" alt="Wing Samui 2-Bed" onerror="this.style.display='none'">
+      <div class="prop-body">
+        <div class="card-header">
+          <span class="card-name">Wing Samui Condo &mdash; 2-Bedroom (Type B)</span>
+          <span class="badge badge-blue">Family Pick</span>
+        </div>
+        <div class="prop-price">From THB 6,110,000 <small>~R3.36M &middot; ~$172K</small></div>
+        <div class="prop-specs">
+          <span class="prop-spec">50&ndash;59 sqm</span>
+          <span class="prop-spec">2 Bedrooms</span>
+          <span class="prop-spec">Bophut</span>
+          <span class="prop-spec">Freehold</span>
+        </div>
+        <p class="card-desc">Fully furnished 2-bed with A/C, balcony, washing machine, kitchen. Swimming pools, tennis court, gym, kids' pool &amp; playground, 5,100 sqm landscaped gardens. Rental program included. <strong>Estimated 8&ndash;15% rental yield. 5-year buyback guarantee.</strong></p>
+        <a class="map-link" href="https://maps.google.com/?q=Wing+Samui+Condominium+Bophut" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 010-5 2.5 2.5 0 010 5z"/></svg>Open in Maps</a>
+      </div>
+    </div>
+
+    <div class="prop-card">
+      <img class="prop-img" src="https://www.estate-samui-properties.com/wp-content/uploads/2023/02/vs5183-wing-samui-condominium-1.jpg" alt="Wing Samui Type A+" onerror="this.style.display='none'">
+      <div class="prop-body">
+        <div class="card-header">
+          <span class="card-name">Wing Samui Condo &mdash; 2-Bedroom (Type A+)</span>
+          <span class="badge badge-orange">Largest Unit</span>
+        </div>
+        <div class="prop-price">From THB 7,680,000 <small>~R4.22M &middot; ~$216K</small></div>
+        <div class="prop-specs">
+          <span class="prop-spec">68 sqm</span>
+          <span class="prop-spec">2 Bedrooms</span>
+          <span class="prop-spec">Bophut</span>
+          <span class="prop-spec">Freehold</span>
+        </div>
+        <p class="card-desc">Largest unit type at Wing Samui. Fully furnished, A/C throughout, smart TV, WiFi, balcony. Full resort amenities plus property management and rental program.</p>
+        <a class="map-link" href="https://maps.google.com/?q=Wing+Samui+Condominium+Bophut" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 010-5 2.5 2.5 0 010 5z"/></svg>Open in Maps</a>
+      </div>
+    </div>
+
+    <div class="section-label">Premium &mdash; THB 10M+ (~R5.5M+ / $280K+)</div>
+
+    <div class="prop-card">
+      <img class="prop-img" src="https://samui-island-realty.com/wp-content/uploads/2021/11/Azur-Samui-Apartments-For-Sale-View.jpg" alt="Azur Samui 2-Bed" onerror="this.style.display='none'">
+      <div class="prop-body">
+        <div class="card-header">
+          <span class="card-name">Azur Samui &mdash; 2-Bedroom Sea View</span>
+          <span class="badge badge-purple">Luxury</span>
+        </div>
+        <div class="prop-price">THB 8,200,000 <small>~R4.51M &middot; ~$231K</small></div>
+        <div class="prop-specs">
+          <span class="prop-spec">110 sqm</span>
+          <span class="prop-spec">2 Bedrooms</span>
+          <span class="prop-spec">Maenam Hills</span>
+          <span class="prop-spec">Freehold</span>
+        </div>
+        <p class="card-desc">Panoramic sea views over Koh Phangan. Low-density luxury: just 28 apartments + 23 villas on 30 rai. Infinity pool, gym, yoga area, tennis court, 24hr security, clubhouse, concierge. Near Santiburi Golf Course. 5 min to Maenam Beach.</p>
+        <a class="map-link" href="https://maps.google.com/?q=Azur+Samui+Maenam+Koh+Samui" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 010-5 2.5 2.5 0 010 5z"/></svg>Open in Maps</a>
+      </div>
+    </div>
+
+    <div class="prop-card">
+      <img class="prop-img" src="https://samui-island-realty.com/wp-content/uploads/2021/11/Azur-Samui-Apartments-For-Sale-Living-Area.jpg" alt="Azur Samui 1-Bed" onerror="this.style.display='none'">
+      <div class="prop-body">
+        <div class="card-header">
+          <span class="card-name">Azur Samui &mdash; 1-Bedroom Sea View</span>
+        </div>
+        <div class="prop-price">THB 10,750,000 <small>~R5.91M &middot; ~$303K</small></div>
+        <div class="prop-specs">
+          <span class="prop-spec">121 sqm</span>
+          <span class="prop-spec">1 Bedroom</span>
+          <span class="prop-spec">Maenam Hills</span>
+          <span class="prop-spec">Freehold</span>
+        </div>
+        <p class="card-desc">Spacious 1-bed with stunning sea views. Open-plan living, modern Western kitchen, ensuite bathroom, private balcony. All resort amenities including infinity pool, gym, yoga, tennis, landscaped gardens.</p>
+        <a class="map-link" href="https://maps.google.com/?q=Azur+Samui+Maenam+Koh+Samui" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 010-5 2.5 2.5 0 010 5z"/></svg>Open in Maps</a>
+      </div>
+    </div>
+
+    <div class="prop-card">
+      <img class="prop-img" src="https://www.estate-samui-properties.com/wp-content/uploads/2023/10/azur-samui-2.jpg" alt="Azur Samui Penthouse" onerror="this.style.display='none'">
+      <div class="prop-body">
+        <div class="card-header">
+          <span class="card-name">Azur Samui &mdash; 2-Bed Penthouse</span>
+          <span class="badge badge-pink">Top of Range</span>
+        </div>
+        <div class="prop-price">THB 13,500,000 <small>~R7.43M &middot; ~$380K</small></div>
+        <div class="prop-specs">
+          <span class="prop-spec">175 sqm</span>
+          <span class="prop-spec">2 Bedrooms</span>
+          <span class="prop-spec">Maenam Hills</span>
+          <span class="prop-spec">Freehold</span>
+          <span class="prop-spec">Penthouse</span>
+        </div>
+        <p class="card-desc">Private sun terrace with plunge pool. Panoramic sea &amp; mountain views. Open-plan living, ensuite bathrooms, modern Western kitchen. The pinnacle of Koh Samui island living.</p>
+        <a class="map-link" href="https://maps.google.com/?q=Azur+Samui+Maenam+Koh+Samui" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 010-5 2.5 2.5 0 010 5z"/></svg>Open in Maps</a>
+      </div>
+    </div>
+
+    <div class="info-card">
+      <strong>Where to Search for More Listings</strong>
+      <p>&bull; <strong>fazwaz.com</strong> &mdash; Largest English-language portal, excellent freehold filter<br>
+      &bull; <strong>thailand-property.com</strong> &mdash; Wide range of listings<br>
+      &bull; <strong>hipflat.com</strong> &mdash; Good price analytics<br>
+      &bull; <strong>ddproperty.com</strong> &mdash; Major Thai portal with English<br>
+      &bull; <strong>conradproperties.asia</strong> &mdash; Koh Samui specialist<br>
+      &bull; <strong>samui-island-realty.com</strong> &mdash; Local expert, full service</p>
+    </div>
+  </div>
+
+  <!-- ===== LEGAL PROCESS ===== -->
+  <div id="legal" class="tab-content">
+    <div class="section-title">How to Buy &mdash; Step by Step</div>
+    <div class="section-sub">The legal process for a foreigner buying a freehold condo</div>
+
+    <div class="step"><div class="step-num">1</div><div class="step-text"><strong>Find a property</strong> &mdash; Use agents, listing sites, or visit in person. Shortlist 3&ndash;5 options.</div></div>
+    <div class="step"><div class="step-num">2</div><div class="step-text"><strong>Verify foreign quota</strong> &mdash; Get <strong>written confirmation</strong> from the condo Juristic Person that the 49% foreign quota has space. No confirmation = walk away.</div></div>
+    <div class="step"><div class="step-num">3</div><div class="step-text"><strong>Hire YOUR OWN lawyer</strong> &mdash; An independent, bilingual (English/Thai) property lawyer. Never use the developer's or agent's lawyer. Budget THB 30,000&ndash;100,000.</div></div>
+    <div class="step"><div class="step-num">4</div><div class="step-text"><strong>Due diligence</strong> &mdash; Title search at Land Office (verify no encumbrances, mortgages, liens). Check building permits, EIA compliance, developer financials.</div></div>
+    <div class="step"><div class="step-num">5</div><div class="step-text"><strong>Reservation &amp; deposit</strong> &mdash; Sign reservation agreement. Pay booking fee (THB 50,000&ndash;200,000, usually non-refundable). Then sign Sale &amp; Purchase Agreement and pay 10&ndash;30% deposit.</div></div>
+    <div class="step"><div class="step-num">6</div><div class="step-text"><strong>Transfer funds from SA</strong> &mdash; Wire purchase price in <strong>foreign currency (ZAR/USD)</strong> from your SA bank to your Thai bank account. The Thai bank converts to THB and issues the <strong>FET Form</strong>. This is critical &mdash; no FET = no ownership registration.</div></div>
+    <div class="step"><div class="step-num">7</div><div class="step-text"><strong>Transfer at Land Office</strong> &mdash; Both parties attend (or via Power of Attorney). Title deed transferred, taxes &amp; fees paid, ownership officially registered.</div></div>
+
+    <div class="warning-card">
+      <strong>The FET Form Is Non-Negotiable</strong>
+      <p>Your funds <strong>must</strong> come from outside Thailand in <strong>foreign currency</strong> (not THB). The bank memo must state: "For purchase of condominium unit [number] at [name] for [Your Full Name]." The name must match your passport and SPA exactly. <strong>No FET = no freehold registration at the Land Office.</strong></p>
+    </div>
+
+    <div class="section-label">Title Deed Types</div>
+    <div class="glass-card">
+      <table class="data-table">
+        <tr><th>Title</th><th>Security</th><th>Notes</th></tr>
+        <tr><td><strong>Chanote (Nor Sor 4 Jor)</strong></td><td style="color:var(--green)">Highest</td><td>Full freehold, GPS-surveyed. The gold standard.</td></tr>
+        <tr><td><strong>Nor Sor 3 Gor</strong></td><td style="color:var(--green)">High</td><td>Officially surveyed, strong rights.</td></tr>
+        <tr><td><strong>Nor Sor 3</strong></td><td style="color:var(--orange)">Medium</td><td>Not precisely surveyed. 30-day public notice for transfers.</td></tr>
+        <tr><td><strong>Sor Kor 1</strong></td><td style="color:var(--red)">Low</td><td>Cannot be sold or mortgaged. <strong>Avoid.</strong></td></tr>
+      </table>
+      <p class="card-desc" style="margin-top:10px"><strong>Rule:</strong> Only buy with a Chanote title. Anything less &mdash; walk away.</p>
+    </div>
+
+    <div class="section-label">Common Scams</div>
+    <div class="glass-card">
+      <p class="card-desc">
+        <strong>1. Foreign quota fraud</strong> &mdash; Sold a unit when the 49% is already full<br>
+        <strong>2. Nominee company schemes</strong> &mdash; "Perfectly legal" (they're not)<br>
+        <strong>3. Guaranteed 8&ndash;10% rental returns</strong> &mdash; Often inflated into the purchase price<br>
+        <strong>4. Phantom off-plan projects</strong> &mdash; Take deposits, never build<br>
+        <strong>5. Missing FET form</strong> &mdash; Pay cash locally = cannot register ownership<br>
+        <strong>6. Dual pricing</strong> &mdash; Foreigners quoted much higher than Thais
+      </p>
+    </div>
+
+    <div class="section-label">Recommended Lawyers</div>
+    <div class="glass-card">
+      <table class="data-table">
+        <tr><th>Firm</th><th>Notes</th></tr>
+        <tr><td><strong>Alpha Legal Samui</strong></td><td>10+ years, Koh Samui property specialist</td></tr>
+        <tr><td><strong>Benoit &amp; Partners</strong></td><td>Bangkok-based, travels to Samui, strong property practice</td></tr>
+        <tr><td><strong>Samui Island Realty (referrals)</strong></td><td>Network of vetted local lawyers</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- ===== SA FINANCES ===== -->
+  <div id="sa" class="tab-content">
+    <div class="section-title">South African Money &amp; Tax</div>
+    <div class="section-sub">SARB allowances, SARS reporting, and double taxation</div>
+
+    <div class="section-label">How to Get Your Money Out of SA</div>
+    <div class="glass-card">
+      <table class="data-table">
+        <tr><th>Allowance</th><th>Amount</th><th>Tax Clearance</th><th>Notes</th></tr>
+        <tr><td><strong>Single Discretionary (SDA)</strong></td><td>R1,000,000/year</td><td>Not required</td><td>Any purpose including property. Easy.</td></tr>
+        <tr><td><strong>Foreign Investment (FIA)</strong></td><td>R10,000,000/year</td><td>TCS PIN from SARS</td><td>Specifically covers property investment.</td></tr>
+        <tr><td><strong>Combined max</strong></td><td><strong>R11,000,000/year</strong></td><td>&mdash;</td><td>No SARB approval needed up to this.</td></tr>
+        <tr><td><strong>Above R10M FIA</strong></td><td>Unlimited</td><td>TCS + SARB approval</td><td>Requires detailed motivation letter.</td></tr>
+      </table>
+    </div>
+
+    <div class="info-card">
+      <strong>FIA Process</strong>
+      <p>1. Log into <strong>SARS eFiling</strong><br>
+      2. Navigate to "Tax Compliance Status" &rarr; "Foreign Investment Allowance"<br>
+      3. Complete details about source of funds and purpose<br>
+      4. Upload: income statements, bank statements, property purchase agreement<br>
+      5. SARS issues a <strong>TCS PIN</strong> (7&ndash;14 business days)<br>
+      6. Give the TCS PIN to your bank/forex dealer to process the transfer<br>
+      7. Valid for <strong>12 months</strong></p>
+    </div>
+
+    <div class="tip-card">
+      <strong>Eligibility</strong>
+      <p>You must be: SA tax resident, over 18, <strong>fully tax compliant</strong> (all returns filed, no outstanding debt). Property purchases are specifically listed as an approved use of the FIA.</p>
+    </div>
+
+    <div class="section-label">Tax Implications</div>
+    <div class="glass-card">
+      <div class="card-header">
+        <span class="card-name">SA Taxes on Thai Property</span>
+      </div>
+      <p class="card-desc">As a SA tax resident, you're taxed on <strong>worldwide income</strong>:</p>
+      <table class="data-table">
+        <tr><th>Event</th><th>SA Tax Treatment</th></tr>
+        <tr><td><strong>Rental income</strong></td><td>Declared as foreign income on ITR12. Taxed at your marginal rate. Claim Thai tax paid as credit.</td></tr>
+        <tr><td><strong>Capital gain on sale</strong></td><td>40% inclusion rate (40% of gain added to taxable income). Annual R40,000 exclusion. Claim Thai WHT as credit.</td></tr>
+        <tr><td><strong>Thai taxes paid</strong></td><td>Foreign tax credit under the SA-Thailand DTA (in force since 1 Jan 1997). Prevents double taxation.</td></tr>
+      </table>
+    </div>
+
+    <div class="glass-card">
+      <div class="card-header">
+        <span class="card-name">Double Tax Agreement (DTA)</span>
+        <span class="badge badge-teal">In Force Since 1997</span>
+      </div>
+      <p class="card-desc">Thailand can tax your rental income and capital gains (property is in Thailand). South Africa also taxes it (worldwide income), but <strong>must credit Thai taxes paid</strong>. You won't be double-taxed, but you must declare everything to SARS.</p>
+    </div>
+
+    <div class="warning-card">
+      <strong>Don't Forget SARS</strong>
+      <p>Declare <strong>all</strong> Thai property income and gains annually. From ~2029, SA will participate in automatic exchange of foreign property data &mdash; SARS will know. Non-disclosure penalties are severe.</p>
+    </div>
+  </div>
+
+  <!-- ===== COSTS & FEES ===== -->
+  <div id="costs" class="tab-content">
+    <div class="section-title">Costs &amp; Fees Breakdown</div>
+    <div class="section-sub">What you'll pay on top of the purchase price</div>
+
+    <div class="section-label">Transfer Fees &amp; Taxes</div>
+    <div class="glass-card">
+      <table class="data-table">
+        <tr><th>Fee/Tax</th><th>Rate</th><th>Who Pays</th><th>Notes</th></tr>
+        <tr><td><strong>Transfer Fee</strong></td><td>2%</td><td>Split 50/50 (negotiable)</td><td>Based on appraised value</td></tr>
+        <tr><td><strong>Specific Business Tax</strong></td><td>3.3%</td><td>Seller</td><td>If owned &lt; 5 years</td></tr>
+        <tr><td><strong>Stamp Duty</strong></td><td>0.5%</td><td>Seller</td><td>Only if SBT doesn't apply (owned 5+ years)</td></tr>
+        <tr><td><strong>Withholding Tax</strong></td><td>~1&ndash;2.5%</td><td>Seller</td><td>Progressive rate based on holding period</td></tr>
+      </table>
+      <p class="card-desc" style="margin-top:10px"><strong>Total closing costs:</strong> Typically 2.5&ndash;6.3% of appraised value. As a buyer, budget ~1&ndash;3% (your share of transfer fee + lawyer).</p>
+    </div>
+
+    <div class="section-label">Ongoing Costs</div>
+    <div class="glass-card">
+      <table class="data-table">
+        <tr><th>Cost</th><th>Amount</th><th>Frequency</th></tr>
+        <tr><td><strong>Common Area Maintenance (CAM)</strong></td><td>THB 40&ndash;70/sqm</td><td>Monthly</td></tr>
+        <tr><td><strong>Sinking Fund</strong></td><td>THB 500&ndash;1,000/sqm</td><td>One-time at purchase</td></tr>
+        <tr><td><strong>Electricity</strong></td><td>THB 1,500&ndash;5,000</td><td>Monthly</td></tr>
+        <tr><td><strong>Water</strong></td><td>THB 100&ndash;400</td><td>Monthly</td></tr>
+        <tr><td><strong>Internet (fibre)</strong></td><td>THB 700&ndash;1,200</td><td>Monthly</td></tr>
+        <tr><td><strong>Insurance</strong></td><td>THB 1,000&ndash;5,000</td><td>Annual</td></tr>
+        <tr><td><strong>Rental management</strong></td><td>10&ndash;30% of rental income</td><td>Per booking</td></tr>
+      </table>
+    </div>
+
+    <div class="info-card">
+      <strong>Example: 50 sqm Condo at THB 5M</strong>
+      <p>&bull; Purchase price: <strong>THB 5,000,000</strong> (~R2.75M)<br>
+      &bull; Transfer fee (1% your share): THB 50,000 (~R27,500)<br>
+      &bull; Sinking fund: THB 35,000 (~R19,250)<br>
+      &bull; Lawyer: THB 50,000 (~R27,500)<br>
+      &bull; <strong>Total to budget: ~THB 5,135,000</strong> (~R2.82M)<br><br>
+      &bull; Monthly CAM: THB 3,000 (~R1,650)<br>
+      &bull; Monthly utilities: THB 2,500 (~R1,375)<br>
+      &bull; Annual insurance: THB 3,000 (~R1,650)<br>
+      &bull; <strong>Monthly holding cost: ~THB 5,750</strong> (~R3,160 / ~$162)</p>
+    </div>
+  </div>
+
+  <!-- ===== MARKET DATA ===== -->
+  <div id="market" class="tab-content">
+    <div class="section-title">Koh Samui Property Market</div>
+    <div class="section-sub">Prices, yields, and trends &middot; 2025&ndash;2026</div>
+
+    <div class="section-label">Average Prices</div>
+    <div class="glass-card">
+      <table class="data-table">
+        <tr><th>Type</th><th>Price (THB)</th><th>Price (ZAR)</th><th>Price (USD)</th></tr>
+        <tr><td>Studio (30&ndash;40 sqm)</td><td>1.9M &ndash; 4M</td><td>R1.05M &ndash; R2.2M</td><td>$53K &ndash; $112K</td></tr>
+        <tr><td>1-Bedroom (40&ndash;60 sqm)</td><td>3M &ndash; 7M</td><td>R1.65M &ndash; R3.85M</td><td>$84K &ndash; $196K</td></tr>
+        <tr><td>2-Bedroom (60&ndash;100 sqm)</td><td>6M &ndash; 15M</td><td>R3.3M &ndash; R8.25M</td><td>$168K &ndash; $420K</td></tr>
+        <tr><td>3-Bed Penthouse</td><td>10M &ndash; 21M+</td><td>R5.5M &ndash; R11.55M+</td><td>$280K &ndash; $590K+</td></tr>
+      </table>
+    </div>
+
+    <div class="section-label">Price Per Square Meter</div>
+    <div class="glass-card">
+      <table class="data-table">
+        <tr><th>Segment</th><th>THB/sqm</th><th>ZAR/sqm</th></tr>
+        <tr><td>Budget / entry-level</td><td>40,000 &ndash; 60,000</td><td>R22,000 &ndash; R33,000</td></tr>
+        <tr><td>Mid-range</td><td>60,000 &ndash; 100,000</td><td>R33,000 &ndash; R55,000</td></tr>
+        <tr><td>Premium / luxury</td><td>100,000 &ndash; 200,000+</td><td>R55,000 &ndash; R110,000+</td></tr>
+        <tr><td><strong>Island average</strong></td><td><strong>~88,500</strong></td><td><strong>~R48,675</strong></td></tr>
+      </table>
+    </div>
+
+    <div class="section-label">Rental Yields</div>
+    <div class="glass-card">
+      <table class="data-table">
+        <tr><td><strong>Gross rental yield</strong></td><td>5&ndash;8% (well-managed)</td></tr>
+        <tr><td><strong>Net yield (after expenses)</strong></td><td>4&ndash;6%</td></tr>
+        <tr><td><strong>Average Airbnb income</strong></td><td>~THB 1M ($35K) per year</td></tr>
+        <tr><td><strong>Average Airbnb occupancy</strong></td><td>68%</td></tr>
+        <tr><td><strong>Peak season occupancy (Feb)</strong></td><td>76%</td></tr>
+        <tr><td><strong>Low season (Sep)</strong></td><td>39%</td></tr>
+        <tr><td><strong>Active Airbnb listings</strong></td><td>~4,306 on island</td></tr>
+        <tr><td><strong>Top guest nationality</strong></td><td>German (Europe = 56% of arrivals)</td></tr>
+      </table>
+    </div>
+
+    <div class="section-label">Best Areas to Buy</div>
+    <div class="glass-card">
+      <table class="data-table">
+        <tr><th>Area</th><th>Character</th><th>Investment</th><th>Price</th></tr>
+        <tr><td><strong>Chaweng</strong></td><td>Busiest hub, nightlife, shopping</td><td>Highest short-term rental demand</td><td>Mid&ndash;High</td></tr>
+        <tr><td><strong>Bophut</strong></td><td>Trendy, restaurants, family-friendly</td><td>~70% of island supply. Balanced.</td><td>Mid&ndash;High</td></tr>
+        <tr><td><strong>Maenam</strong></td><td>Quiet, authentic, calm beach</td><td>Good value entry, popular with expats</td><td>Lower</td></tr>
+        <tr><td><strong>Lamai</strong></td><td>Relaxed, French community</td><td>Sweet spot: serenity + rentals</td><td>Mid</td></tr>
+        <tr><td><strong>Choeng Mon</strong></td><td>Exclusive, serene, near airport</td><td>Premium luxury market</td><td>High</td></tr>
+        <tr><td><strong>Bangrak</strong></td><td>Near airport, convenient</td><td>Practical, affordable</td><td>Lower&ndash;Mid</td></tr>
+      </table>
+    </div>
+
+    <div class="tip-card">
+      <strong>Market Outlook 2025&ndash;2026</strong>
+      <p>&bull; Values forecast to rise <strong>5&ndash;10%</strong> in 2025<br>
+      &bull; Total property market: THB 30.3 billion (~$822M)<br>
+      &bull; Villa supply up 34% YoY; condos = 52% of market<br>
+      &bull; Strong post-COVID tourism recovery driving rental demand<br>
+      &bull; Airport &amp; fibre internet upgrades as positive catalysts<br>
+      &bull; High-end villa sales hitting $14M &mdash; strong luxury demand</p>
+    </div>
+  </div>
+
+  <!-- ===== VISAS ===== -->
+  <div id="visa" class="tab-content">
+    <div class="section-title">Visas &amp; Staying in Thailand</div>
+    <div class="section-sub">Owning property does NOT give you a visa &mdash; here are your options</div>
+
+    <div class="warning-card">
+      <strong>Important</strong>
+      <p>Buying a condo does <strong>not</strong> automatically grant any visa or right to stay in Thailand. You still need a valid visa. But there are several good options.</p>
+    </div>
+
+    <div class="glass-card">
+      <div class="card-header">
+        <span class="card-name">THB 3M Property Visa</span>
+        <span class="badge badge-green">New Oct 2025</span>
+      </div>
+      <div class="card-meta"><span>1-year renewable</span></div>
+      <p class="card-desc">Buy a completed freehold condo worth <strong>THB 3M+</strong> and qualify for a renewable 1-year stay. Must be registered after Oct 1, 2020. Off-plan does NOT qualify &mdash; must be completed and transferred.</p>
+    </div>
+
+    <div class="glass-card">
+      <div class="card-header">
+        <span class="card-name">Thailand Privilege (Elite) Visa</span>
+        <span class="badge badge-purple">Premium</span>
+      </div>
+      <div class="card-meta"><span>5&ndash;20 years</span><span>THB 650,000 &ndash; 5,000,000</span></div>
+      <p class="card-desc">Membership-based long-term visa. Airport VIP, lounge access, annual health check. No income or age requirement &mdash; just the fee. Best option for regular visitors.</p>
+    </div>
+
+    <div class="glass-card">
+      <div class="card-header">
+        <span class="card-name">Long-Term Resident (LTR) Visa</span>
+      </div>
+      <div class="card-meta"><span>10 years renewable</span></div>
+      <p class="card-desc"><strong>Wealthy Global Citizen:</strong> USD 1M+ assets + USD 500K in Thai investments.<br>
+      <strong>Wealthy Pensioner:</strong> Age 50+, USD 80K/year income or USD 40&ndash;80K + USD 250K Thai investment.<br>
+      Includes 17% flat income tax rate and work permit.</p>
+    </div>
+
+    <div class="glass-card">
+      <div class="card-header">
+        <span class="card-name">Other Options</span>
+      </div>
+      <table class="data-table">
+        <tr><th>Visa</th><th>Duration</th><th>Key Detail</th></tr>
+        <tr><td><strong>Tourist (SA passport)</strong></td><td>60 days on arrival</td><td>Free. Extendable 30 days at immigration.</td></tr>
+        <tr><td><strong>Retirement (O-A)</strong></td><td>1 year renewable</td><td>Age 50+, THB 800K in Thai bank or THB 65K/month income</td></tr>
+        <tr><td><strong>Investment Visa</strong></td><td>1 year renewable</td><td>THB 10M+ in property/bonds/deposits</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- ===== PRACTICAL ===== -->
+  <div id="practical" class="tab-content">
+    <div class="section-title">Practical Tips</div>
+    <div class="section-sub">What to know about owning property in a tropical island</div>
+
+    <div class="section-label">Tropical Climate Challenges</div>
+    <div class="glass-card">
+      <p class="card-desc">
+        <strong>Humidity &amp; mould</strong> &mdash; The biggest issue. Run AC or dehumidifiers regularly, even when absent. Mould can destroy furniture and walls in weeks.<br><br>
+        <strong>Salt air corrosion</strong> &mdash; Metal fixtures, electronics, and AC units degrade faster near the coast.<br><br>
+        <strong>Pest control</strong> &mdash; Regular treatment needed (termites, ants, mosquitoes).<br><br>
+        <strong>AC servicing</strong> &mdash; Clean filters monthly; professional service every 3&ndash;6 months.<br><br>
+        <strong>Storm season</strong> &mdash; Oct&ndash;Dec brings heavy rain. Ensure adequate insurance.<br><br>
+        <strong>If absent</strong> &mdash; Hire management or have someone check monthly at minimum.
+      </p>
+    </div>
+
+    <div class="section-label">Rental Management Companies</div>
+    <div class="glass-card">
+      <table class="data-table">
+        <tr><th>Company</th><th>Commission</th><th>Notes</th></tr>
+        <tr><td><strong>Inter Property Koh Samui</strong></td><td>From 12%</td><td>Claims 81% more bookings vs average Airbnb</td></tr>
+        <tr><td><strong>MyBnbFactory</strong></td><td>Varies</td><td>AI pricing algorithm, Airbnb/Booking.com</td></tr>
+        <tr><td><strong>Sasipimon Estate</strong></td><td>~10%</td><td>Full management, Airbnb Luxe badge</td></tr>
+        <tr><td><strong>Doctor Property</strong></td><td>Varies</td><td>Short-term, monthly, block bookings</td></tr>
+      </table>
+    </div>
+
+    <div class="section-label">Insurance</div>
+    <div class="glass-card">
+      <table class="data-table">
+        <tr><th>Coverage</th><th>Annual Cost</th></tr>
+        <tr><td>Basic (fire only)</td><td>From THB 600</td></tr>
+        <tr><td>Standard (fire, flood, theft, storm)</td><td>THB 2,000 &ndash; 5,000</td></tr>
+        <tr><td>Comprehensive (up to THB 10M)</td><td>~THB 20,000</td></tr>
+      </table>
+      <p class="card-desc" style="margin-top:10px">Get flood coverage for coastal properties. Providers: AXA Thailand, Viriyah Insurance, Bangkok Insurance.</p>
+    </div>
+
+    <div class="section-label">Off-Plan vs Resale</div>
+    <div class="glass-card">
+      <table class="data-table">
+        <tr><th></th><th>Off-Plan</th><th>Resale</th></tr>
+        <tr><td><strong>Price</strong></td><td>10&ndash;20% lower</td><td>Market price</td></tr>
+        <tr><td><strong>Risk</strong></td><td>Developer default, delays</td><td>What you see is what you get</td></tr>
+        <tr><td><strong>Payment</strong></td><td>Staged (30% down + milestones)</td><td>Lump sum at transfer</td></tr>
+        <tr><td><strong>Property Visa?</strong></td><td>No (not completed)</td><td>Yes (if THB 3M+)</td></tr>
+        <tr><td><strong>Customisation</strong></td><td>Sometimes possible</td><td>Limited</td></tr>
+      </table>
+    </div>
+
+    <div class="tip-card">
+      <strong>Top Tips for SA Buyers</strong>
+      <p>&bull; Get your TCS PIN from SARS <strong>before</strong> you start shopping &mdash; it takes 7&ndash;14 days<br>
+      &bull; Open a Thai bank account in person (bring passport, proof of address, Thai phone number)<br>
+      &bull; Wire money in ZAR or USD &mdash; <strong>never send THB</strong><br>
+      &bull; Visit in person before buying &mdash; photos can be misleading<br>
+      &bull; Check the foreign quota <strong>in writing</strong> before paying any deposit<br>
+      &bull; Budget 3&ndash;6% above purchase price for fees<br>
+      &bull; Use Wise or OFX for better forex rates vs your bank<br>
+      &bull; Factor in <strong>both</strong> SA and Thai tax when calculating returns<br>
+      &bull; If buying for rental: Bophut or Chaweng for highest occupancy<br>
+      &bull; If buying for lifestyle: Maenam or Lamai for value &amp; peace</p>
+    </div>
+  </div>
+
+  <div class="footer">
+    <p>Koh Samui Property Guide for South Africans &middot; March 2026<br>
+    Prices approximate &middot; Not financial or legal advice &middot; Always consult a qualified lawyer<br>
+    Exchange rates: ~R0.55/THB &middot; ~THB 35.5/$1 &middot; ~R18.5/$1<br>
+    Sources: Thai Condominium Act, SARB, SARS, FazWaz, Conrad Properties, Samui Island Realty, Forbes &amp; Partners</p>
+  </div>
+</div>
+
+<script>
+function showTab(id) {
+  document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  event.target.classList.add('active');
+}
+</script>
+</body>
+</html>

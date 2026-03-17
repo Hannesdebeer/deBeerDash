@@ -1,0 +1,215 @@
+{
+  "hotel": "Chatrium Grand Bangkok",
+  "hotel_location": "Charoen Krung Road, Sathorn/Riverside area, Bangkok, Thailand",
+  "data_sources": [
+    "TripAdvisor (via web search)",
+    "Michelin Guide",
+    "TimeOut Bangkok",
+    "Chope Bangkok",
+    "Various food blogs and review sites"
+  ],
+  "screenshots_saved": [
+    "timeout_charoenkrung_1.png",
+    "timeout_charoenkrung_2.png",
+    "michelin_riverside_1.png",
+    "michelin_riverside_2.png",
+    "chatrium_grand_dining_1.png",
+    "chatrium_grand_dining_2.png"
+  ],
+  "restaurants": [
+    {
+      "name": "Le Normandie by Alain Roux",
+      "category": "Fine Dining",
+      "cuisine": "French Contemporary",
+      "tripadvisor_rating": "4.5/5",
+      "michelin_stars": 2,
+      "price_range_thb": "5,000-12,000 THB per person",
+      "price_range_aed": "530-1,270 AED per person",
+      "distance_from_hotel": "1.5 km (at Mandarin Oriental, same Charoen Krung Road)",
+      "location": "Mandarin Oriental Hotel, 48 Oriental Ave, Bang Rak, Bangkok",
+      "description": "Two-Michelin-starred French restaurant led by Alain Roux from the legendary three-star Waterside Inn in the UK. Stunning Chao Phraya River views with elaborate floral arrangements and classic French preparations in a less formal, more contemporary setting.",
+      "what_makes_it_special": "Bangkok's most prestigious French fine dining. Alain Roux brings his family's three-generation Michelin legacy. Impeccable riverside setting at the iconic Mandarin Oriental. Recently refreshed with a more relaxed, modern approach while maintaining two-star excellence.",
+      "top_review_snippet": "An extraordinary dining experience with river views. Every dish was a masterpiece of French culinary art.",
+      "best_for": "Special occasions, anniversary dinners, world-class French cuisine"
+    },
+    {
+      "name": "Cote by Mauro Colagreco",
+      "category": "Fine Dining",
+      "cuisine": "Modern Mediterranean / French Riviera-inspired",
+      "tripadvisor_rating": "4.5/5",
+      "michelin_stars": 2,
+      "price_range_thb": "4,500-10,000 THB per person",
+      "price_range_aed": "475-1,060 AED per person",
+      "distance_from_hotel": "1.2 km (at Capella Bangkok, Charoen Krung Soi 30)",
+      "location": "Capella Bangkok, 300/2 Charoen Krung Road, Yan Nawa, Sathorn",
+      "description": "Contemporary Riviera-inspired cuisine by three-Michelin-starred chef Mauro Colagreco (of Mirazur fame). Panoramic river views, elegant presentation, light-filled interiors with serene Mediterranean ambiance overlooking the Chao Phraya.",
+      "what_makes_it_special": "Colagreco's Mirazur is consistently ranked among the world's top 3 restaurants. Cote translates that magic to Bangkok with stunning riverfront setting at the ultra-luxurious Capella. Two Michelin stars in Bangkok. Dishes celebrate garden-to-table philosophy.",
+      "top_review_snippet": "Exceptional Mediterranean cuisine with breathtaking river views. Chef Colagreco's vision perfectly adapted to the Bangkok setting.",
+      "best_for": "Luxury dining, Mediterranean flavors, romantic riverside setting"
+    },
+    {
+      "name": "Blue by Alain Ducasse",
+      "category": "Fine Dining",
+      "cuisine": "French Contemporary",
+      "tripadvisor_rating": "4.1/5",
+      "michelin_stars": 1,
+      "price_range_thb": "3,500-8,000 THB per person (tasting menu from ~4,000 THB)",
+      "price_range_aed": "370-850 AED per person",
+      "distance_from_hotel": "2.5 km (at ICONSIAM)",
+      "location": "ICONLUXE, ICONSIAM, 299 Charoen Nakhon Road, Khlong Ton Sai",
+      "description": "Fine dining by Alain Ducasse — the chef ranked second globally in total Michelin Stars. Panoramic river views from ICONSIAM with both a la carte and tasting menus. Modern French cuisine with precision and elegance.",
+      "what_makes_it_special": "Ducasse is a culinary legend. The restaurant offers panoramic Chao Phraya views from inside ICONSIAM, Bangkok's most impressive riverside mall. One Michelin star with wine pairings curated by expert sommeliers.",
+      "top_review_snippet": "Outstanding service and exquisite French cuisine. The river views add magic to an already exceptional meal.",
+      "best_for": "Fine French dining, combine with ICONSIAM shopping, impressive views"
+    },
+    {
+      "name": "80/20",
+      "category": "Fine Dining / Innovative",
+      "cuisine": "Thai Fusion / Progressive Thai",
+      "tripadvisor_rating": "4.3/5",
+      "michelin_stars": 1,
+      "price_range_thb": "2,500-5,000 THB per person",
+      "price_range_aed": "265-530 AED per person",
+      "distance_from_hotel": "0.8 km (on Charoen Krung Road)",
+      "location": "1052-1054 Charoen Krung Road, Bang Rak, Bangkok",
+      "description": "One-Michelin-starred progressive Thai restaurant by chef Napol 'Joe' Jantraget and pastry chef Saki Hoshino. The concept: 80% local Thai ingredients, 20% chef's creativity. Dynamic seasonal tasting menus that reinterpret Thai flavors with innovative techniques, without excessive formality.",
+      "what_makes_it_special": "The vanguard of Bangkok's new Thai cuisine movement, right on Charoen Krung. Each tasting menu changes seasonally, using hyper-local ingredients sourced from Thai farmers. Michelin-starred yet approachable. A must for food enthusiasts who want to experience cutting-edge Thai gastronomy.",
+      "top_review_snippet": "A mind-blowing culinary journey through Thai flavors you've never experienced before. Every course tells a story.",
+      "best_for": "Food enthusiasts, innovative Thai cuisine, tasting menu experience"
+    },
+    {
+      "name": "Baan Phadthai",
+      "category": "Casual / Street Food Elevated",
+      "cuisine": "Thai (Pad Thai specialist)",
+      "tripadvisor_rating": "4.4/5",
+      "michelin_recognition": "Bib Gourmand",
+      "price_range_thb": "150-500 THB per person",
+      "price_range_aed": "16-53 AED per person",
+      "distance_from_hotel": "0.5 km",
+      "location": "21-23 Soi Charoen Krung 44, Bang Rak, Bangkok 10500",
+      "description": "Michelin Bib Gourmand-awarded pad thai specialist on Charoen Krung. Chef Sujira 'Aom' Pongmorn reinvents Thailand's national noodle using 18 homemade ingredients and a secret recipe from eastern Thailand. Beautiful sky-blue colonial-style building.",
+      "what_makes_it_special": "The best pad thai in Bangkok, elevated to an art form. Each plate uses 18 handmade ingredients including crab stock base. Try the Pad Thai Song Krung with deep-sea prawns, crabmeat, squid, and mango. Michelin Bib Gourmand at incredibly affordable prices. Walking distance from Chatrium Grand.",
+      "top_review_snippet": "Best pad thai in the world! The 18-ingredient secret recipe creates layers of flavor you won't find anywhere else.",
+      "best_for": "Authentic Thai, families, budget-friendly Michelin-quality meal"
+    },
+    {
+      "name": "100 Mahaseth",
+      "category": "Mid-Range / Trendy",
+      "cuisine": "Thai Isan (nose-to-tail)",
+      "tripadvisor_rating": "4.5/5",
+      "michelin_recognition": "Bib Gourmand",
+      "price_range_thb": "800-2,000 THB per person",
+      "price_range_aed": "85-212 AED per person",
+      "distance_from_hotel": "0.6 km (Mahaseth Road, off Charoen Krung)",
+      "location": "100 Mahaseth Road, Si Phraya, Bang Rak, Bangkok",
+      "description": "Nose-to-tail Thai Isan restaurant with Michelin Bib Gourmand. Elevated northeastern Thai cuisine using locally sourced, seasonal ingredients from farms across Thailand. Emphasis on grilled meats, offal, and sustainable 'root to fruit' philosophy.",
+      "what_makes_it_special": "Pioneered the nose-to-tail dining movement in Bangkok. Signature bone marrow and grilled ox tongue are legendary. Sources all ingredients from Thai farmers with full traceability. Cool, industrial-chic setting in the heart of the Charoen Krung creative district. Very close to Chatrium Grand.",
+      "top_review_snippet": "The bone marrow is incredible. A unique dining concept that honors Thai ingredients with creative, modern techniques.",
+      "best_for": "Adventurous eaters, Thai Isan cuisine, trendy dining"
+    },
+    {
+      "name": "Vertigo Rooftop Restaurant & Moon Bar",
+      "category": "Rooftop / Fine Dining",
+      "cuisine": "International / Grill & Seafood",
+      "tripadvisor_rating": "4.2/5 (6,400+ reviews)",
+      "price_range_thb": "2,500-6,000 THB per person",
+      "price_range_aed": "265-635 AED per person",
+      "distance_from_hotel": "3.5 km (Banyan Tree Hotel, South Sathorn Road)",
+      "location": "Banyan Tree Bangkok, 61st floor, 21/100 South Sathon Road",
+      "description": "Asia's first alfresco rooftop grill-and-bar, perched 61 floors above Bangkok at the Banyan Tree Hotel. Fork-tender seafood and premium steaks while gazing at the vast Bangkok skyline. Adjacent Moon Bar for pre/post-dinner cocktails.",
+      "what_makes_it_special": "One of Bangkok's most iconic rooftop dining experiences. 61 floors up with 360-degree panoramic city views. Open-air dining under the stars. Perfect for sunset cocktails at Moon Bar followed by dinner. Over 6,400 TripAdvisor reviews — a bucket-list Bangkok experience.",
+      "top_review_snippet": "Breathtaking views from 61 floors up. The sunset cocktails at Moon Bar followed by dinner at Vertigo is a must-do Bangkok experience.",
+      "best_for": "Rooftop views, sunset dining, romantic evenings, Instagram-worthy"
+    },
+    {
+      "name": "Jok Prince (Joke Prince)",
+      "category": "Street Food",
+      "cuisine": "Thai (Congee / Rice Porridge)",
+      "tripadvisor_rating": "4.3/5",
+      "michelin_recognition": "Bib Gourmand",
+      "price_range_thb": "55-120 THB per person",
+      "price_range_aed": "6-13 AED per person",
+      "distance_from_hotel": "0.4 km (on Charoen Krung Road)",
+      "location": "1391 Charoen Krung Road, Silom, Bang Rak, Bangkok 10500",
+      "description": "Legendary street food stall operating for 50+ years, famous for its smoky charcoal-cooked congee. Michelin Bib Gourmand. Large bowls starting at just 55 baht with minced pork, egg, pork entrails, and freshly fried donuts. Open-air seating in a narrow alley.",
+      "what_makes_it_special": "The ultimate Bangkok street food experience steps from Chatrium Grand. 50+ years of history. The slightly smoky flavor from charcoal cooking is unique and legendary. Michelin Bib Gourmand at incredibly low prices — one of the cheapest Michelin-recognized meals in the world. Great for breakfast or late-night snack.",
+      "top_review_snippet": "One of the top 5 best congees in Thailand. The smoky aroma and creamy texture are unforgettable. A must-visit for street food lovers.",
+      "best_for": "Breakfast, authentic street food, budget dining, cultural experience"
+    },
+    {
+      "name": "Supanniga Eating Room (Tha Tien)",
+      "category": "Mid-Range / Casual Fine Dining",
+      "cuisine": "Thai (Eastern Thai / Trat & Chantaburi recipes)",
+      "tripadvisor_rating": "4.5/5",
+      "michelin_recognition": "Michelin Selected",
+      "price_range_thb": "300-800 THB per person",
+      "price_range_aed": "32-85 AED per person",
+      "distance_from_hotel": "4 km (Tha Tien, near Wat Pho) — also has Sathorn 10 branch at 2.5 km",
+      "location": "392/25-26 Soi Tha Tien, Maha Rat Road, Phra Nakhon (or Sathorn 10 branch)",
+      "description": "Michelin-selected Thai restaurant serving 80-year-old family recipes from Trat and Chantaburi provinces. The Tha Tien location offers rooftop seating with spectacular Chao Phraya River and Wat Arun views. Homestyle Thai cooking elevated to restaurant quality.",
+      "what_makes_it_special": "Authentic family recipes passed down for 80 years. Rooftop dining with postcard-perfect views of Wat Arun at sunset (book 1 month ahead for rooftop seats). Michelin-recognized every year since 2018. The Sathorn 10 branch is closer to Chatrium Grand. Excellent value for quality Thai food.",
+      "top_review_snippet": "The food was excellent — authentic Thai flavors, beautifully prepared. The rooftop view of Wat Arun at sunset is simply magical.",
+      "best_for": "Authentic Thai cuisine, families, riverside views, great value"
+    },
+    {
+      "name": "Charmgang",
+      "category": "Fine Dining / Thai",
+      "cuisine": "Thai (Curries & Traditional)",
+      "tripadvisor_rating": "4.6/5",
+      "timeout_rating": "5/5",
+      "price_range_thb": "1,500-4,000 THB per person",
+      "price_range_aed": "160-425 AED per person",
+      "distance_from_hotel": "1.0 km",
+      "location": "Charoen Krung area, Bang Rak, Bangkok",
+      "description": "Created by the former kitchen team of the legendary Nahm restaurant. Comforting, soulful Thai fare with curries as the star attraction. TimeOut rated 5/5. Celebrates the depth and complexity of traditional Thai curry-making.",
+      "what_makes_it_special": "The team behind Nahm (which was once ranked #1 in Asia's 50 Best) now runs this gem. The curries are considered among the finest in Bangkok — deeply layered, perfectly balanced, and made with traditional techniques. TimeOut's perfect 5/5 rating. A curry lover's paradise.",
+      "top_review_snippet": "The curries here are extraordinary — complex, layered, and deeply satisfying. The former Nahm team has outdone themselves.",
+      "best_for": "Thai curry lovers, food connoisseurs, traditional Thai flavors"
+    }
+  ],
+  "additional_notable_mentions": [
+    {
+      "name": "Aksorn by David Thompson",
+      "cuisine": "Vintage Thai",
+      "michelin_stars": 1,
+      "note": "One Michelin star. Led by David Thompson. Sharing-style dishes that transport you to 1950s-1970s Thailand. On Charoen Krung.",
+      "distance": "~1 km"
+    },
+    {
+      "name": "Yu Ting Yuan",
+      "cuisine": "Cantonese Chinese",
+      "michelin_stars": 1,
+      "note": "Bangkok's only Michelin-starred Chinese restaurant. Authentic Cantonese cuisine at Four Seasons. ~1.5 km away.",
+      "distance": "~1.5 km"
+    },
+    {
+      "name": "Nai Mong Hoi Tod",
+      "cuisine": "Thai Street Food (Oyster Omelette)",
+      "note": "Chinatown classic. Michelin street food guide fixture. Famous crispy oyster omelettes. ~2 km away.",
+      "distance": "~2 km"
+    },
+    {
+      "name": "Giorgio's at Royal Orchid Sheraton",
+      "cuisine": "Italian",
+      "note": "Home-style Italian with Chao Phraya River views. Walking distance from Chatrium Grand.",
+      "distance": "~0.8 km"
+    },
+    {
+      "name": "Thara Thong",
+      "cuisine": "Gastronomic Thai",
+      "note": "Sophisticated Thai cuisine at the Royal Orchid Sheraton. Under 1,000 THB per person.",
+      "distance": "~0.8 km"
+    }
+  ],
+  "currency_note": "Exchange rate used: approximately 1 AED = 9.44 THB (March 2026 approximate rate)",
+  "tips": [
+    "Book Le Normandie, Cote, and Blue by Alain Ducasse at least 1-2 weeks in advance",
+    "For Supanniga rooftop seats with Wat Arun view, book 1 month ahead",
+    "Vertigo is best visited at sunset — arrive at Moon Bar by 5:30 PM",
+    "Jok Prince is perfect for breakfast or a late-night snack — opens early",
+    "Baan Phadthai can have long queues at peak lunch hours — go at 11 AM or after 2 PM",
+    "The Charoen Krung creative district is very walkable from Chatrium Grand — many restaurants within 1 km",
+    "ICONSIAM (Blue by Alain Ducasse) is accessible by free shuttle boat from nearby piers",
+    "100 Mahaseth and 80/20 are in the same neighborhood — do both in one evening"
+  ]
+}
