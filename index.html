@@ -244,6 +244,7 @@
     <button class="tab" onclick="showTab('market')">Market Data</button>
     <button class="tab" onclick="showTab('visa')">Visas</button>
     <button class="tab" onclick="showTab('practical')">Practical</button>
+    <button class="tab" onclick="showTab('dubai')" style="color:var(--orange)">Dubai</button>
   </div>
 
   <!-- ===== OVERVIEW ===== -->
@@ -889,11 +890,416 @@
     </div>
   </div>
 
+  <!-- ===== DUBAI PROPERTY ===== -->
+  <div id="dubai" class="tab-content">
+    <div class="section-title">Dubai Property Analysis</div>
+    <div class="section-sub">3-Bedroom Villas &amp; Townhouses &middot; Iran War Impact &middot; March 2026</div>
+
+    <!-- Key Stats -->
+    <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap:12px; margin-bottom:20px;">
+      <div class="glass-card" style="text-align:center; padding:16px;">
+        <div style="font-size:0.75em; color:var(--text-tertiary); text-transform:uppercase; letter-spacing:0.05em;">Avg 3-Bed Townhouse</div>
+        <div style="font-size:1.5em; font-weight:700; color:var(--accent);">AED 2.76M</div>
+        <div style="font-size:0.8em; color:var(--green);">+92% since 2022</div>
+      </div>
+      <div class="glass-card" style="text-align:center; padding:16px;">
+        <div style="font-size:0.75em; color:var(--text-tertiary); text-transform:uppercase; letter-spacing:0.05em;">DFM Real Estate Index</div>
+        <div style="font-size:1.5em; font-weight:700; color:var(--red);">-30%</div>
+        <div style="font-size:0.8em; color:var(--text-tertiary);">Since Iran strikes (1 Mar)</div>
+      </div>
+      <div class="glass-card" style="text-align:center; padding:16px;">
+        <div style="font-size:0.75em; color:var(--text-tertiary); text-transform:uppercase; letter-spacing:0.05em;">2025 Transactions</div>
+        <div style="font-size:1.5em; font-weight:700;">AED 917B</div>
+        <div style="font-size:0.8em; color:var(--green);">All-time record</div>
+      </div>
+      <div class="glass-card" style="text-align:center; padding:16px;">
+        <div style="font-size:0.75em; color:var(--text-tertiary); text-transform:uppercase; letter-spacing:0.05em;">Villa Rental Yield</div>
+        <div style="font-size:1.5em; font-weight:700; color:var(--green);">5&ndash;9%</div>
+        <div style="font-size:0.8em; color:var(--text-tertiary);">Gross, mid-tier best</div>
+      </div>
+    </div>
+
+    <!-- Price Trend Chart -->
+    <div class="section-label">Dubai Villa/Townhouse Price Trend (AED/sqft)</div>
+    <div class="glass-card" style="padding:24px; overflow-x:auto;">
+      <svg viewBox="0 0 700 280" style="width:100%; max-width:700px; font-family:Inter, sans-serif;">
+        <!-- Grid lines -->
+        <line x1="60" y1="30" x2="680" y2="30" stroke="#e5e5e7" stroke-width="0.5"/>
+        <line x1="60" y1="80" x2="680" y2="80" stroke="#e5e5e7" stroke-width="0.5"/>
+        <line x1="60" y1="130" x2="680" y2="130" stroke="#e5e5e7" stroke-width="0.5"/>
+        <line x1="60" y1="180" x2="680" y2="180" stroke="#e5e5e7" stroke-width="0.5"/>
+        <line x1="60" y1="230" x2="680" y2="230" stroke="#e5e5e7" stroke-width="0.5"/>
+        <!-- Y axis labels -->
+        <text x="55" y="34" text-anchor="end" fill="#86868b" font-size="10">2,000</text>
+        <text x="55" y="84" text-anchor="end" fill="#86868b" font-size="10">1,600</text>
+        <text x="55" y="134" text-anchor="end" fill="#86868b" font-size="10">1,200</text>
+        <text x="55" y="184" text-anchor="end" fill="#86868b" font-size="10">800</text>
+        <text x="55" y="234" text-anchor="end" fill="#86868b" font-size="10">400</text>
+        <!-- X axis labels -->
+        <text x="100" y="255" text-anchor="middle" fill="#86868b" font-size="10">2020</text>
+        <text x="223" y="255" text-anchor="middle" fill="#86868b" font-size="10">2021</text>
+        <text x="347" y="255" text-anchor="middle" fill="#86868b" font-size="10">2022</text>
+        <text x="470" y="255" text-anchor="middle" fill="#86868b" font-size="10">2023</text>
+        <text x="593" y="255" text-anchor="middle" fill="#86868b" font-size="10">2024</text>
+        <text x="665" y="255" text-anchor="middle" fill="#86868b" font-size="10">2025</text>
+        <!-- Area fill -->
+        <path d="M100,218 L223,193 L347,155 L470,105 L593,55 L665,38 L665,230 L100,230 Z" fill="url(#priceGrad)" opacity="0.3"/>
+        <!-- Price line -->
+        <polyline points="100,218 223,193 347,155 470,105 593,55 665,38" fill="none" stroke="var(--accent)" stroke-width="2.5" stroke-linejoin="round"/>
+        <!-- Data dots -->
+        <circle cx="100" cy="218" r="4" fill="var(--accent)"/>
+        <circle cx="223" cy="193" r="4" fill="var(--accent)"/>
+        <circle cx="347" cy="155" r="4" fill="var(--accent)"/>
+        <circle cx="470" cy="105" r="4" fill="var(--accent)"/>
+        <circle cx="593" cy="55" r="4" fill="var(--accent)"/>
+        <circle cx="665" cy="38" r="4" fill="var(--accent)"/>
+        <!-- Value labels -->
+        <text x="100" y="210" text-anchor="middle" fill="var(--accent)" font-size="9" font-weight="600">650</text>
+        <text x="223" y="185" text-anchor="middle" fill="var(--accent)" font-size="9" font-weight="600">850</text>
+        <text x="347" y="147" text-anchor="middle" fill="var(--accent)" font-size="9" font-weight="600">1,050</text>
+        <text x="470" y="97" text-anchor="middle" fill="var(--accent)" font-size="9" font-weight="600">1,350</text>
+        <text x="593" y="47" text-anchor="middle" fill="var(--accent)" font-size="9" font-weight="600">1,600</text>
+        <text x="665" y="30" text-anchor="middle" fill="var(--accent)" font-size="9" font-weight="600">1,689</text>
+        <!-- Iran war marker -->
+        <line x1="680" y1="30" x2="680" y2="230" stroke="var(--red)" stroke-width="1.5" stroke-dasharray="4,3"/>
+        <text x="680" y="265" text-anchor="middle" fill="var(--red)" font-size="9" font-weight="600">Mar 26</text>
+        <text x="680" y="22" text-anchor="middle" fill="var(--red)" font-size="8">Iran War</text>
+        <!-- Gradient def -->
+        <defs>
+          <linearGradient id="priceGrad" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="var(--accent)" stop-opacity="0.4"/>
+            <stop offset="100%" stop-color="var(--accent)" stop-opacity="0"/>
+          </linearGradient>
+        </defs>
+      </svg>
+      <p style="font-size:0.78em; color:var(--text-tertiary); margin-top:8px;">Source: ValuStrat, DLD, Bayut &middot; +160% growth from 2020 low to 2025 peak</p>
+    </div>
+
+    <!-- Iran War Impact -->
+    <div class="section-label">Iran War Impact on Dubai Property (Feb&ndash;Mar 2026)</div>
+    <div class="warning-card">
+      <strong>What Happened</strong>
+      <p>On <strong>28 Feb 2026</strong>, US and Israel launched airstrikes on Iran. Iran retaliated with missiles and drones hitting Dubai directly &mdash; Burj Al Arab, Fairmont The Palm, DXB Airport, and Jebel Ali Port were all struck. Over 1,800 projectiles have been fired at the UAE since.</p>
+    </div>
+
+    <div style="display:grid; grid-template-columns: 1fr 1fr; gap:12px; margin-bottom:14px;">
+      <div class="glass-card">
+        <div class="card-header"><span class="card-name">Stock Market</span><span class="badge badge-red">Crashed</span></div>
+        <p class="card-desc">DFM Real Estate Index dropped <strong>30%</strong> in 2 weeks, wiping out all 2026 gains. DFM closed for 2 sessions. Real estate bonds saw steep losses.</p>
+      </div>
+      <div class="glass-card">
+        <div class="card-header"><span class="card-name">Actual Property Prices</span><span class="badge badge-green">Holding</span></div>
+        <p class="card-desc">Transaction prices have <strong>not crashed</strong>. 3,570 deals worth AED 11.93B completed in the first week. Viewings recovered 75% after initial shock. 60% of purchases are cash.</p>
+      </div>
+    </div>
+
+    <div class="glass-card">
+      <div class="card-header"><span class="card-name">Key Takeaway</span><span class="badge badge-orange">Sentiment Shock</span></div>
+      <p class="card-desc">This is a <strong>sentiment shock, not a structural collapse</strong> &mdash; so far. The stock index crashed but actual property prices are holding. However, this is the <strong>first time Dubai itself has been physically struck</strong>, which is qualitatively different from previous regional conflicts where Dubai served as the safe haven beneficiary.</p>
+    </div>
+
+    <!-- Historical Comparison -->
+    <div class="section-label">How Dubai Recovered from Past Crises</div>
+    <div class="glass-card" style="overflow-x:auto;">
+      <table>
+        <tr><th>Crisis</th><th>Impact</th><th>Recovery</th></tr>
+        <tr><td><strong>1990 Gulf War</strong></td><td>Capital fled Kuwait to Dubai</td><td>Dubai benefited &mdash; safe haven</td></tr>
+        <tr><td><strong>2008 Financial Crisis</strong></td><td>Prices fell ~50%</td><td>Full recovery by 2013&ndash;14</td></tr>
+        <tr><td><strong>2011 Arab Spring</strong></td><td>Capital from Egypt, Syria, Libya flowed in</td><td>Prices surged 2012&ndash;14</td></tr>
+        <tr><td><strong>2020 COVID-19</strong></td><td>Sharp dip</td><td>Buyers who entered saw 60%+ gains by 2023</td></tr>
+        <tr><td><strong>2022 Russia-Ukraine</strong></td><td>Wealthy Russians relocated to Dubai</td><td>Luxury segment boomed</td></tr>
+        <tr><td><strong>2026 Iran War</strong></td><td>Dubai directly hit &mdash; stocks -30%</td><td>Too early to tell. Property prices holding so far.</td></tr>
+      </table>
+    </div>
+
+    <!-- Community Price Comparison -->
+    <div class="section-label">3-Bed Villa/Townhouse Prices by Community</div>
+    <div class="glass-card" style="padding:24px; overflow-x:auto;">
+      <svg viewBox="0 0 700 340" style="width:100%; max-width:700px; font-family:Inter, sans-serif;">
+        <!-- Bars -->
+        <rect x="70" y="20" width="90" height="24" rx="4" fill="var(--accent)" opacity="0.15"/>
+        <rect x="70" y="20" width="18" height="24" rx="4" fill="var(--accent)"/>
+        <text x="65" y="36" text-anchor="end" fill="var(--text-secondary)" font-size="9">DAMAC Hills 2</text>
+        <text x="95" y="36" fill="white" font-size="8" font-weight="600">1.2M</text>
+
+        <rect x="70" y="52" width="90" height="24" rx="4" fill="var(--accent)" opacity="0.15"/>
+        <rect x="70" y="52" width="25" height="24" rx="4" fill="var(--accent)"/>
+        <text x="65" y="68" text-anchor="end" fill="var(--text-secondary)" font-size="9">Town Square</text>
+        <text x="102" y="68" fill="white" font-size="8" font-weight="600">1.7M</text>
+
+        <rect x="70" y="84" width="90" height="24" rx="4" fill="var(--accent)" opacity="0.15"/>
+        <rect x="70" y="84" width="29" height="24" rx="4" fill="var(--accent)"/>
+        <text x="65" y="100" text-anchor="end" fill="var(--text-secondary)" font-size="9">Villanova</text>
+        <text x="106" y="100" fill="white" font-size="8" font-weight="600">2.0M</text>
+
+        <rect x="70" y="116" width="90" height="24" rx="4" fill="var(--accent)" opacity="0.15"/>
+        <rect x="70" y="116" width="37" height="24" rx="4" fill="var(--accent)"/>
+        <text x="65" y="132" text-anchor="end" fill="var(--text-secondary)" font-size="9">Mudon</text>
+        <text x="114" y="132" fill="white" font-size="8" font-weight="600">2.5M</text>
+
+        <rect x="70" y="148" width="90" height="24" rx="4" fill="var(--accent)" opacity="0.15"/>
+        <rect x="70" y="148" width="38" height="24" rx="4" fill="var(--accent)"/>
+        <text x="65" y="164" text-anchor="end" fill="var(--text-secondary)" font-size="9">DAMAC Hills 1</text>
+        <text x="115" y="164" fill="white" font-size="8" font-weight="600">2.6M</text>
+
+        <rect x="70" y="180" width="90" height="24" rx="4" fill="var(--accent)" opacity="0.15"/>
+        <rect x="70" y="180" width="49" height="24" rx="4" fill="var(--accent)"/>
+        <text x="65" y="196" text-anchor="end" fill="var(--text-secondary)" font-size="9">Arabian Ranches 3</text>
+        <text x="126" y="196" fill="white" font-size="8" font-weight="600">3.3M</text>
+
+        <rect x="70" y="212" width="90" height="24" rx="4" fill="var(--accent)" opacity="0.15"/>
+        <rect x="70" y="212" width="52" height="24" rx="4" fill="var(--accent)"/>
+        <text x="65" y="228" text-anchor="end" fill="var(--text-secondary)" font-size="9">JVC</text>
+        <text x="129" y="228" fill="white" font-size="8" font-weight="600">3.5M</text>
+
+        <rect x="70" y="244" width="90" height="24" rx="4" fill="var(--accent)" opacity="0.15"/>
+        <rect x="70" y="244" width="69" height="24" rx="4" fill="var(--accent)"/>
+        <text x="65" y="260" text-anchor="end" fill="var(--text-secondary)" font-size="9">Al Furjan</text>
+        <text x="146" y="260" fill="white" font-size="8" font-weight="600">4.7M</text>
+
+        <rect x="70" y="276" width="90" height="24" rx="4" fill="var(--purple)" opacity="0.15"/>
+        <rect x="70" y="276" width="82" height="24" rx="4" fill="var(--purple)"/>
+        <text x="65" y="292" text-anchor="end" fill="var(--text-secondary)" font-size="9">Dubai Hills</text>
+        <text x="159" y="292" fill="white" font-size="8" font-weight="600">5.6M+</text>
+
+        <rect x="70" y="308" width="90" height="24" rx="4" fill="var(--purple)" opacity="0.15"/>
+        <rect x="70" y="308" width="90" height="24" rx="4" fill="var(--purple)"/>
+        <text x="65" y="324" text-anchor="end" fill="var(--text-secondary)" font-size="9">Arabian Ranches 1</text>
+        <text x="167" y="324" fill="white" font-size="8" font-weight="600">6.0M+</text>
+      </svg>
+      <p style="font-size:0.78em; color:var(--text-tertiary); margin-top:8px;">Starting prices for ready 3-bed villas/townhouses (AED) &middot; Source: Bayut, Property Finder, DLD</p>
+    </div>
+
+    <!-- Listings by Tier -->
+    <div class="section-label">Budget &mdash; Under AED 1.5M (~R7.5M / ~$410K)</div>
+
+    <div class="prop-card">
+      <img class="prop-img" src="https://cdn-res.damacproperties.com/upload/unit-type/55/gallery/20210708_102710_6c8ea6d11f.jpg" alt="DAMAC Hills 2 Townhouse" onerror="this.style.display='none'">
+      <div class="prop-body">
+        <div class="card-header">
+          <span class="card-name">DAMAC Hills 2 &mdash; Camelia Townhouse</span>
+          <span class="badge badge-green">Cheapest Entry</span>
+        </div>
+        <div class="prop-price">AED 1,322,000 <small>~R6.6M &middot; ~$360K</small></div>
+        <div class="prop-specs">
+          <span class="prop-spec">1,979 sqft</span>
+          <span class="prop-spec">3 Bedrooms</span>
+          <span class="prop-spec">3 Bathrooms</span>
+          <span class="prop-spec">DAMAC Hills 2</span>
+          <span class="prop-spec">Ready</span>
+        </div>
+        <p class="card-desc">Most affordable freehold 3-bed in Dubai. Gated community with pools, parks, Trump International Golf Club access, cycling tracks, pet-friendly. ~700 AED/sqft. Great entry point but furthest from central Dubai.</p>
+        <a class="map-link" href="https://maps.google.com/?q=DAMAC+Hills+2+Dubai" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 010-5 2.5 2.5 0 010 5z"/></svg>Open in Maps</a>
+        <a class="map-link" href="https://www.bayut.com/for-sale/3-bedroom-townhouses/dubai/damac-hills-2-akoya-by-damac/" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M19 19H5V5h7V3H5a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/></svg>View Listings</a>
+      </div>
+    </div>
+
+    <div class="section-label">Mid-Range &mdash; AED 1.5&ndash;3M (~R7.5&ndash;15M / ~$410&ndash;820K)</div>
+
+    <div class="prop-card">
+      <img class="prop-img" src="https://images.bayut.com/thumbnails/296571-240x180.jpeg" alt="Town Square Reem Townhouse" onerror="this.style.display='none'">
+      <div class="prop-body">
+        <div class="card-header">
+          <span class="card-name">Reem Townhouses &mdash; Town Square (Nshama)</span>
+          <span class="badge badge-blue">Best Value</span>
+        </div>
+        <div class="prop-price">AED 1,680,000 <small>~R8.4M &middot; ~$458K</small></div>
+        <div class="prop-specs">
+          <span class="prop-spec">2,321 sqft</span>
+          <span class="prop-spec">3 Bedrooms</span>
+          <span class="prop-spec">4 Bathrooms</span>
+          <span class="prop-spec">Town Square</span>
+          <span class="prop-spec">Ready</span>
+        </div>
+        <p class="card-desc">Open-plan layout, private rear garden, maid&rsquo;s room, covered garage. Community gym, pool, children&rsquo;s play areas, Town Square Park. Excellent value for size. ~724 AED/sqft.</p>
+        <a class="map-link" href="https://maps.google.com/?q=Town+Square+Dubai" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 010-5 2.5 2.5 0 010 5z"/></svg>Open in Maps</a>
+        <a class="map-link" href="https://www.bayut.com/for-sale/3-bedroom-townhouses/dubai/town-square/reem-townhouses/" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M19 19H5V5h7V3H5a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/></svg>View Listings</a>
+      </div>
+    </div>
+
+    <div class="prop-card">
+      <img class="prop-img" src="https://images.bayut.com/thumbnails/521289-240x180.jpeg" alt="Villanova Amaranta Townhouse" onerror="this.style.display='none'">
+      <div class="prop-body">
+        <div class="card-header">
+          <span class="card-name">Amaranta &mdash; Villanova (Dubai Properties)</span>
+        </div>
+        <div class="prop-price">AED 1,980,000 <small>~R9.9M &middot; ~$539K</small></div>
+        <div class="prop-specs">
+          <span class="prop-spec">~1,800 sqft</span>
+          <span class="prop-spec">3 Bedrooms</span>
+          <span class="prop-spec">3 Bathrooms</span>
+          <span class="prop-spec">Villanova</span>
+          <span class="prop-spec">Ready</span>
+        </div>
+        <p class="card-desc">Private garden, built-in wardrobes, central A/C, covered parking. Community pool, gym, children&rsquo;s play areas, pet-friendly. Popular family community in Dubailand.</p>
+        <a class="map-link" href="https://maps.google.com/?q=Villanova+Dubailand+Dubai" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 010-5 2.5 2.5 0 010 5z"/></svg>Open in Maps</a>
+        <a class="map-link" href="https://www.bayut.com/for-sale/3-bedroom-townhouses/dubai/dubailand/villanova/" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M19 19H5V5h7V3H5a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/></svg>View Listings</a>
+      </div>
+    </div>
+
+    <div class="prop-card">
+      <img class="prop-img" src="https://images.bayut.com/thumbnails/380193-240x180.jpeg" alt="Mudon Townhouse" onerror="this.style.display='none'">
+      <div class="prop-body">
+        <div class="card-header">
+          <span class="card-name">Mudon &mdash; 3-Bed + Maid (Dubai Properties)</span>
+          <span class="badge badge-orange">Family Pick</span>
+        </div>
+        <div class="prop-price">AED 2,490,000 <small>~R12.5M &middot; ~$678K</small></div>
+        <div class="prop-specs">
+          <span class="prop-spec">~2,000 sqft</span>
+          <span class="prop-spec">3 Bed + Maid</span>
+          <span class="prop-spec">4 Bathrooms</span>
+          <span class="prop-spec">Mudon</span>
+          <span class="prop-spec">Ready</span>
+        </div>
+        <p class="card-desc">Gated community with community centre, pools, parks, mosque, retail, cycling and jogging tracks. Established family neighbourhood with good schools. <strong>5&ndash;7% rental yield.</strong></p>
+        <a class="map-link" href="https://maps.google.com/?q=Mudon+Dubai" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 010-5 2.5 2.5 0 010 5z"/></svg>Open in Maps</a>
+        <a class="map-link" href="https://www.bayut.com/for-sale/3-bedroom-townhouses/dubai/mudon/" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M19 19H5V5h7V3H5a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/></svg>View Listings</a>
+      </div>
+    </div>
+
+    <div class="section-label">Premium &mdash; AED 3&ndash;5M (~R15&ndash;25M / ~$820K&ndash;1.36M)</div>
+
+    <div class="prop-card">
+      <img class="prop-img" src="https://images.bayut.com/thumbnails/631104-240x180.jpeg" alt="Arabian Ranches 3 Villa" onerror="this.style.display='none'">
+      <div class="prop-body">
+        <div class="card-header">
+          <span class="card-name">Arabian Ranches 3 &mdash; 3-Bed Villa (Emaar)</span>
+          <span class="badge badge-purple">Top Appreciation</span>
+        </div>
+        <div class="prop-price">From AED 3,300,000 <small>~R16.5M &middot; ~$899K</small></div>
+        <div class="prop-specs">
+          <span class="prop-spec">~2,000 sqft</span>
+          <span class="prop-spec">3 Bedrooms</span>
+          <span class="prop-spec">3&ndash;4 Bathrooms</span>
+          <span class="prop-spec">Arabian Ranches 3</span>
+          <span class="prop-spec">Ready</span>
+        </div>
+        <p class="card-desc">Emaar&rsquo;s newest Arabian Ranches phase. Community centre, pools, parks, jogging trails, golf proximity, retail village, schools. <strong>+27.8% price/sqft growth &mdash; strongest in Dubai.</strong></p>
+        <a class="map-link" href="https://maps.google.com/?q=Arabian+Ranches+3+Dubai" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 010-5 2.5 2.5 0 010 5z"/></svg>Open in Maps</a>
+        <a class="map-link" href="https://www.propertyfinder.ae/en/buy/dubai/villas-for-sale-arabian-ranches-3.html" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M19 19H5V5h7V3H5a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/></svg>View Listings</a>
+      </div>
+    </div>
+
+    <div class="prop-card">
+      <img class="prop-img" src="https://images.bayut.com/thumbnails/429677-240x180.jpeg" alt="Al Furjan Villa" onerror="this.style.display='none'">
+      <div class="prop-body">
+        <div class="card-header">
+          <span class="card-name">Al Furjan &mdash; 3-Bed Villa (Nakheel)</span>
+          <span class="badge badge-blue">Metro Access</span>
+        </div>
+        <div class="prop-price">From AED 4,700,000 <small>~R23.5M &middot; ~$1.28M</small></div>
+        <div class="prop-specs">
+          <span class="prop-spec">~2,800 sqft</span>
+          <span class="prop-spec">3 Bedrooms</span>
+          <span class="prop-spec">4 Bathrooms</span>
+          <span class="prop-spec">Al Furjan</span>
+          <span class="prop-spec">Ready</span>
+        </div>
+        <p class="card-desc">Metro-connected community (Route 2020). The Pavilion community centre, pool, gym, parks. Near Ibn Battuta Mall. Mature, established neighbourhood with excellent infrastructure.</p>
+        <a class="map-link" href="https://maps.google.com/?q=Al+Furjan+Dubai" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 010-5 2.5 2.5 0 010 5z"/></svg>Open in Maps</a>
+        <a class="map-link" href="https://www.propertyfinder.ae/en/buy/dubai/villas-for-sale-al-furjan.html" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M19 19H5V5h7V3H5a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/></svg>View Listings</a>
+      </div>
+    </div>
+
+    <div class="section-label">Luxury &mdash; AED 5M+ (~R25M+ / ~$1.36M+)</div>
+
+    <div class="prop-card">
+      <img class="prop-img" src="https://images.bayut.com/thumbnails/671143-240x180.jpeg" alt="Dubai Hills Estate Villa" onerror="this.style.display='none'">
+      <div class="prop-body">
+        <div class="card-header">
+          <span class="card-name">Dubai Hills Estate &mdash; 3-Bed Villa (Emaar)</span>
+          <span class="badge badge-purple">Premium</span>
+        </div>
+        <div class="prop-price">From AED 5,600,000 <small>~R28M &middot; ~$1.53M</small></div>
+        <div class="prop-specs">
+          <span class="prop-spec">2,862&ndash;4,443 sqft</span>
+          <span class="prop-spec">3 Bedrooms</span>
+          <span class="prop-spec">4 Bathrooms</span>
+          <span class="prop-spec">Dubai Hills</span>
+          <span class="prop-spec">Ready</span>
+        </div>
+        <p class="card-desc">Dubai Hills Golf Club, Dubai Hills Mall, parks, GEMS schools, hospital, private gardens. <strong>+17% YoY appreciation. 2,252 AED/sqft.</strong> One of Dubai&rsquo;s most sought-after communities.</p>
+        <a class="map-link" href="https://maps.google.com/?q=Dubai+Hills+Estate" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 010-5 2.5 2.5 0 010 5z"/></svg>Open in Maps</a>
+        <a class="map-link" href="https://www.propertyfinder.ae/en/buy/dubai/3-bedroom-villas-for-sale-dubai-hills-estate.html" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M19 19H5V5h7V3H5a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/></svg>View Listings</a>
+      </div>
+    </div>
+
+    <div class="prop-card">
+      <img class="prop-img" src="https://images.bayut.com/thumbnails/115791-240x180.jpeg" alt="Arabian Ranches 1 Villa" onerror="this.style.display='none'">
+      <div class="prop-body">
+        <div class="card-header">
+          <span class="card-name">Arabian Ranches 1 &mdash; 3-Bed Villa (Emaar)</span>
+          <span class="badge badge-orange">Established</span>
+        </div>
+        <div class="prop-price">From AED 6,000,000 <small>~R30M &middot; ~$1.63M</small></div>
+        <div class="prop-specs">
+          <span class="prop-spec">~3,200 sqft</span>
+          <span class="prop-spec">3 Bedrooms</span>
+          <span class="prop-spec">3&ndash;4 Bathrooms</span>
+          <span class="prop-spec">Arabian Ranches 1</span>
+          <span class="prop-spec">Ready (est. 2004)</span>
+        </div>
+        <p class="card-desc">Dubai&rsquo;s original premium villa community. Arabian Ranches Golf Club, Ranches Souk, Dubai Polo &amp; Equestrian Club, JESS school, community pool, parks. Mature trees, established community feel. <strong>2,241 AED/sqft.</strong></p>
+        <a class="map-link" href="https://maps.google.com/?q=Arabian+Ranches+Dubai" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 010-5 2.5 2.5 0 010 5z"/></svg>Open in Maps</a>
+        <a class="map-link" href="https://www.bayut.com/for-sale/3-bedroom-villas/dubai/arabian-ranches/" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M19 19H5V5h7V3H5a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/></svg>View Listings</a>
+      </div>
+    </div>
+
+    <!-- Buy Analysis -->
+    <div class="section-label">Should You Buy Now?</div>
+
+    <div style="display:grid; grid-template-columns: 1fr 1fr; gap:12px; margin-bottom:14px;">
+      <div class="glass-card">
+        <div class="card-header"><span class="card-name">Reasons to Buy</span><span class="badge badge-green">Bull Case</span></div>
+        <p class="card-desc">
+          &bull; Villa supply severely constrained (~15K units in 2026 vs ~100K apartments)<br>
+          &bull; 60% of purchases are cash &mdash; no leverage-driven collapse risk<br>
+          &bull; Distress deals emerging at 20&ndash;35% below market from motivated sellers<br>
+          &bull; Stock index down 30% but actual property prices holding<br>
+          &bull; Every past Dubai crisis was followed by recovery &amp; new highs<br>
+          &bull; Golden Visa (AED 2M+ = 10-year residency) still active<br>
+          &bull; 5&ndash;9% rental yields, zero capital gains tax<br>
+          &bull; 70% of surveyed buyers still intend to buy within 6 months
+        </p>
+      </div>
+      <div class="glass-card">
+        <div class="card-header"><span class="card-name">Reasons to Wait</span><span class="badge badge-red">Bear Case</span></div>
+        <p class="card-desc">
+          &bull; <strong>First time Dubai has been physically struck</strong> &mdash; safe haven brand damaged<br>
+          &bull; Fitch forecasts 10&ndash;15% price correction regardless of war<br>
+          &bull; ~366,000 new residential units by 2028 &mdash; oversupply risk<br>
+          &bull; War insurance now excluded from standard policies<br>
+          &bull; Expat departures could pressure demand<br>
+          &bull; &ldquo;The easy money has already been made by those who bought in 2020&ndash;21&rdquo;<br>
+          &bull; Conflict duration unknown &mdash; prolonged war = sustained uncertainty<br>
+          &bull; DXB Airport, Jebel Ali Port both damaged &mdash; economic disruption risk
+        </p>
+      </div>
+    </div>
+
+    <div class="glass-card" style="border-left: 4px solid var(--orange);">
+      <div class="card-header"><span class="card-name">The Verdict</span></div>
+      <p class="card-desc" style="font-size:0.95em;">
+        <strong>It&rsquo;s a nuanced moment.</strong> Dubai has converted from a one-way bull market into a market that finally prices risk again. If you have a <strong>long-term horizon (5+ years)</strong> and can stomach short-term volatility, the distress deals (20&ndash;35% below market) currently available may represent a rare buying window &mdash; especially for villas where supply is severely constrained. If you need certainty or plan to flip short-term, <strong>wait for the conflict to resolve</strong>. Prioritise completed, freehold, ready-to-transfer assets in prime communities with proven demand (Dubai Hills, Arabian Ranches, Town Square, Mudon).
+      </p>
+    </div>
+
+    <div class="info-card">
+      <strong>Where to Search for Dubai Listings</strong>
+      <p>&bull; <strong>bayut.com</strong> &mdash; Largest UAE property portal<br>
+      &bull; <strong>propertyfinder.ae</strong> &mdash; Excellent filters and analytics<br>
+      &bull; <strong>dubizzle.com</strong> &mdash; Direct owner listings<br>
+      &bull; <strong>driven properties</strong> &mdash; Premium villa specialist<br>
+      &bull; <strong>allsopp-allsopp.com</strong> &mdash; Top-rated agency for villas</p>
+    </div>
+  </div>
+
   <div class="footer">
-    <p>Koh Samui Property Guide for South Africans &middot; March 2026<br>
+    <p>deBeerDash &middot; Property Guide &middot; March 2026<br>
     Prices approximate &middot; Not financial or legal advice &middot; Always consult a qualified lawyer<br>
-    Exchange rates: ~R0.55/THB &middot; ~THB 35.5/$1 &middot; ~R18.5/$1<br>
-    Sources: Thai Condominium Act, SARB, SARS, FazWaz, Conrad Properties, Samui Island Realty, Forbes &amp; Partners</p>
+    Exchange rates: ~R0.55/THB &middot; ~THB 35.5/$1 &middot; ~R18.5/$1 &middot; ~AED 3.67/$1<br>
+    Sources: Thai Condominium Act, SARB, SARS, FazWaz, DLD, ValuStrat, Knight Frank, Bayut, Savills</p>
   </div>
 </div>
 
